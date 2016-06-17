@@ -3,7 +3,7 @@
 const $ = require('jquery');
 const tether = require('tether');
 const page = require('../includes/javascript/dynamicFunctions.js');
-const StatbarAnimator = require('../includes/javascript/StatbarAnimator.js');
+const smoothScroll = require('../includes/javascript/smoothScroll.js');
 
 // Bootstrap Alpha requires forced dependencies
 global.jQuery = $;
@@ -12,63 +12,18 @@ const bootstrap = require('bootstrap');
 
 // Selectors & states
 const selector = {
-	age: "#age",
-	profileImage: "#profile-image",
-	statbar: ".stats .stat-bar"
+	age: "#age"
 };
-
-// Threshold for mobile with
-const mobileThresh = 768;
 
 // Initial configuration
 page.displayAge(selector.age);
-page.alignProfileImage(selector.profileImage, mobileThresh);
-new StatbarAnimator(selector.statbar, ['80%', '95%', '70%', '100%']);
-require('../includes/javascript/formSubmitListener.js');
-require('../includes/javascript/scrollspyEmulator.js');
-require('../includes/javascript/staticNavAnimator.js');
+smoothScroll('.local-link');
 
-// Realign image upon page resize
-$(window).resize(function(){
-	page.alignProfileImage(selector.profileImage, mobileThresh)
-});
+// Form validation
+require('../includes/javascript/formSubmitListener.js');
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../includes/javascript/StatbarAnimator.js":2,"../includes/javascript/dynamicFunctions.js":3,"../includes/javascript/formSubmitListener.js":4,"../includes/javascript/scrollspyEmulator.js":5,"../includes/javascript/staticNavAnimator.js":6,"bootstrap":7,"jquery":19,"tether":20}],2:[function(require,module,exports){
-const $ = require('jquery');
-
-const inView = function(element){
-	var bottom = $(window).scrollTop() + $(window).height();
-	return bottom > $(element).first().offset().top - 10;
-}
-
-module.exports = class StatbarAnimator {
-	constructor(selector, widths){
-		this.animated = false;
-		this.selector = selector;
-		this.widths = widths;
-
-		// Ensure correct widths
-
-		// Listen for animation opportunity
-		const instance = this;
-		$(window).on("load resize scroll", function(){
-			if(!instance.animated && inView(instance.selector)){
-				instance.animated = true;
-				instance.animate();
-			}
-		});
-	}
-
-	animate(){
-		const instance = this;
-		$(this.selector).each(function(index){
-			$(this).width(instance.widths[index]);
-		});
-	}
-}
-
-},{"jquery":19}],3:[function(require,module,exports){
+},{"../includes/javascript/dynamicFunctions.js":2,"../includes/javascript/formSubmitListener.js":3,"../includes/javascript/smoothScroll.js":4,"bootstrap":5,"jquery":17,"tether":18}],2:[function(require,module,exports){
 const $ = require('jquery');
 var exports = module.exports = {};
 
@@ -88,7 +43,7 @@ exports.displayAge = function(selector){
 	$(selector).text(age);
 }
 
-},{"jquery":19}],4:[function(require,module,exports){
+},{"jquery":17}],3:[function(require,module,exports){
 const $ = require('jquery');
 
 // Bootstrap form warning functions
@@ -189,115 +144,23 @@ $(document).ready(function() {
     });
 });
 
-},{"jquery":19}],5:[function(require,module,exports){
-// Created by Andrew Richardson
-// Feel free to use, modify and distribute this script
+},{"jquery":17}],4:[function(require,module,exports){
 const $ = require('jquery');
 
-$.fn.makeActive = function(){
-    this.parent().children('.active').removeClass('active');
-    this.addClass('active');
-};
+module.exports = function(selector){
+	$(selector).click(function(event) {
+		event.preventDefault(event);
+		console.log(event);
 
-$(document).ready(function() {
-    $(".row h1").css("padding-top", $("nav").outerHeight());
-    $("#about-me.row h1").css("padding-top", $("nav").outerHeight() + 50);
+		const target = event.currentTarget.attributes.href.nodeValue;
 
-    $(window).scroll(function(){
-        var top = $(window).scrollTop();
+		$('body,html').animate({
+			 scrollTop: $(target).offset().top
+		});
+	});
+}
 
-        if(top < $("#about-me").offset().top -1){
-            $("#homeNav").makeActive();
-        }
-        else if(top < $("#in-action").offset().top - 1){
-            $("#projectsNav").makeActive();
-        }
-        else if(top < $("#contact").offset().top - 1){
-            $("#actionNav").makeActive();
-        }else{
-            $("#contactNav").makeActive();
-        }
-    });
-
-    $(window).resize(function() {
-        $(".row h1").css("padding-top", $("nav").outerHeight());
-        $("#about-me.row h1").css("padding-top", $("nav").outerHeight() + 50);
-    });
-
-    // Navbar click
-    $('.navbar-nav .nav-link').click(function(e){
-        e.preventDefault();
-
-        // Get link
-        var location = $(this).attr("href");
-
-        if(location != "#"){
-            // Scroll to content section
-            $('body,html').animate({
-                scrollTop: $($(this).attr("href")).offset().top
-            }, 700);
-        }else{
-            // Scroll to top of page
-            $('body,html').animate({
-                scrollTop: 0
-            }, 700, function(){
-                $('nav').removeClass('navbar-fixed-top navbar-light');
-                $('nav').addClass('navbar-dark');
-                $('nav').removeAttr('style');
-            });
-        }
-    });
-
-    $("#readMore").click(function(e){
-        e.preventDefault();
-
-        $('body,html').animate({
-            scrollTop: $("#about-me").offset().top
-        });
-    });
-});
-
-},{"jquery":19}],6:[function(require,module,exports){
-const $ = require('jquery');
-
- $(document).ready(function() {
-    // 'Mutual exclusion' animation lock
-    var scrollLock = false;
-
-    $(window).scroll(function(event) {
-        if(scrollLock){
-            // Animation in progress
-            return;
-        }
-
-        // Initiate lock
-        scrollLock = true;
-
-        var scroll = $(window).scrollTop();
-
-        // if down scroll and below jumbotron
-        if(scroll >= $("#about-me").offset().top -1){
-            $('nav').removeClass('navbar-dark');
-            $('nav').addClass('navbar-fixed-top navbar-light');
-
-            $('nav').animate({
-                top: "0px"
-            }, function(){
-                // Release lock
-                scrollLock = false;
-            });
-        }else if(scroll == 0){
-            $('nav').removeClass('navbar-fixed-top navbar-light');
-            $('nav').addClass('navbar-dark');
-            $('nav').removeAttr('style');
-            scrollLock = false;
-        }else{
-            scrollLock = false;
-        }
-    });
-});
-
-},{"jquery":19}],7:[function(require,module,exports){
+},{"jquery":17}],5:[function(require,module,exports){
 // This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
 require('./umd/util.js')
 require('./umd/alert.js')
@@ -310,7 +173,7 @@ require('./umd/scrollspy.js')
 require('./umd/tab.js')
 require('./umd/tooltip.js')
 require('./umd/popover.js')
-},{"./umd/alert.js":8,"./umd/button.js":9,"./umd/carousel.js":10,"./umd/collapse.js":11,"./umd/dropdown.js":12,"./umd/modal.js":13,"./umd/popover.js":14,"./umd/scrollspy.js":15,"./umd/tab.js":16,"./umd/tooltip.js":17,"./umd/util.js":18}],8:[function(require,module,exports){
+},{"./umd/alert.js":6,"./umd/button.js":7,"./umd/carousel.js":8,"./umd/collapse.js":9,"./umd/dropdown.js":10,"./umd/modal.js":11,"./umd/popover.js":12,"./umd/scrollspy.js":13,"./umd/tab.js":14,"./umd/tooltip.js":15,"./umd/util.js":16}],6:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -523,7 +386,7 @@ require('./umd/popover.js')
   module.exports = Alert;
 });
 
-},{"./util":18}],9:[function(require,module,exports){
+},{"./util":16}],7:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module'], factory);
@@ -712,7 +575,7 @@ require('./umd/popover.js')
   module.exports = Button;
 });
 
-},{}],10:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -1211,7 +1074,7 @@ require('./umd/popover.js')
   module.exports = Carousel;
 });
 
-},{"./util":18}],11:[function(require,module,exports){
+},{"./util":16}],9:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -1596,7 +1459,7 @@ require('./umd/popover.js')
   module.exports = Collapse;
 });
 
-},{"./util":18}],12:[function(require,module,exports){
+},{"./util":16}],10:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -1910,7 +1773,7 @@ require('./umd/popover.js')
   module.exports = Dropdown;
 });
 
-},{"./util":18}],13:[function(require,module,exports){
+},{"./util":16}],11:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -2467,7 +2330,7 @@ require('./umd/popover.js')
   module.exports = Modal;
 });
 
-},{"./util":18}],14:[function(require,module,exports){
+},{"./util":16}],12:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './tooltip'], factory);
@@ -2689,7 +2552,7 @@ require('./umd/popover.js')
   module.exports = Popover;
 });
 
-},{"./tooltip":17}],15:[function(require,module,exports){
+},{"./tooltip":15}],13:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -3030,7 +2893,7 @@ require('./umd/popover.js')
   module.exports = ScrollSpy;
 });
 
-},{"./util":18}],16:[function(require,module,exports){
+},{"./util":16}],14:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -3314,7 +3177,7 @@ require('./umd/popover.js')
   module.exports = Tab;
 });
 
-},{"./util":18}],17:[function(require,module,exports){
+},{"./util":16}],15:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module', './util'], factory);
@@ -3954,7 +3817,7 @@ require('./umd/popover.js')
   module.exports = Tooltip;
 });
 
-},{"./util":18}],18:[function(require,module,exports){
+},{"./util":16}],16:[function(require,module,exports){
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['exports', 'module'], factory);
@@ -4128,7 +3991,7 @@ require('./umd/popover.js')
   module.exports = Util;
 });
 
-},{}],19:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.0.0
  * https://jquery.com/
@@ -14167,7 +14030,7 @@ if ( !noGlobal ) {
 return jQuery;
 } ) );
 
-},{}],20:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*! tether 1.3.1 */
 
 (function(root, factory) {
