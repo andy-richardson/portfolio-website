@@ -1,0 +1,27 @@
+.row{
+	background-color: #fff;
+	width: 100%;
+	margin: 0;
+
+	h1{
+		margin-bottom: 2em;
+	}
+
+	h3{
+		font-family: 'work sans', sans-serif;
+		font-weight: 600;
+		text-transform: uppercase;
+
+		margin-bottom: 1em;
+	}
+
+	@media (max-width: map-get($grid-breakpoints, md)){
+		#infoCol{
+			margin-top: 5em;
+		}
+
+		.description{
+			margin-bottom: 5em;
+		}
+	}
+}

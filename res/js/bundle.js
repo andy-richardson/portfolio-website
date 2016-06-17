@@ -2,8 +2,8 @@
 (function (global){
 const $ = require('jquery');
 const tether = require('tether');
-const page = require('../includes/dynamicFunctions.js');
-const StatbarAnimator = require('../includes/StatbarAnimator.js');
+const page = require('../includes/javascript/dynamicFunctions.js');
+const StatbarAnimator = require('../includes/javascript/StatbarAnimator.js');
 
 // Bootstrap Alpha requires forced dependencies
 global.jQuery = $;
@@ -24,23 +24,17 @@ const mobileThresh = 768;
 page.displayAge(selector.age);
 page.alignProfileImage(selector.profileImage, mobileThresh);
 new StatbarAnimator(selector.statbar, ['80%', '95%', '70%', '100%']);
-require('../includes/formSubmitListener.js');
-require('../includes/scrollspyEmulator.js');
-require('../includes/staticNavAnimator.js');
+require('../includes/javascript/formSubmitListener.js');
+require('../includes/javascript/scrollspyEmulator.js');
+require('../includes/javascript/staticNavAnimator.js');
 
 // Realign image upon page resize
 $(window).resize(function(){
 	page.alignProfileImage(selector.profileImage, mobileThresh)
 });
 
-// Temporary link click prevention
-$('#rendo').click(function(evnt){
-	evnt.preventDefault(evnt);
-	alert('Apologies, due to lack of patenting, this project is currently confidential.');
-})
-
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../includes/StatbarAnimator.js":2,"../includes/dynamicFunctions.js":3,"../includes/formSubmitListener.js":4,"../includes/scrollspyEmulator.js":5,"../includes/staticNavAnimator.js":6,"bootstrap":7,"jquery":19,"tether":20}],2:[function(require,module,exports){
+},{"../includes/javascript/StatbarAnimator.js":2,"../includes/javascript/dynamicFunctions.js":3,"../includes/javascript/formSubmitListener.js":4,"../includes/javascript/scrollspyEmulator.js":5,"../includes/javascript/staticNavAnimator.js":6,"bootstrap":7,"jquery":19,"tether":20}],2:[function(require,module,exports){
 const $ = require('jquery');
 
 const inView = function(element){
@@ -214,9 +208,6 @@ $(document).ready(function() {
 
         if(top < $("#about-me").offset().top -1){
             $("#homeNav").makeActive();
-        }
-        else if(top < $("#recent-projects").offset().top - 1){
-            $("#aboutNav").makeActive();
         }
         else if(top < $("#in-action").offset().top - 1){
             $("#projectsNav").makeActive();

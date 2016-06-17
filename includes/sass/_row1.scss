@@ -1,0 +1,27 @@
+#about-me{
+	padding-top: 10em;
+    img{
+        width: 80%;
+    }
+}
+
+.stats{
+    padding-top: 2em;
+
+    $stats-font: 0.85em;
+
+    p{
+        font-size: $stats-font;
+    }
+
+    .stat-bar{
+        height: $stats-font * 1.5;
+        width: 0%;
+        background-color: $brand-primary;
+
+        transition: width 2s;
+        -webkit-transition: width 2s;
+        -moz-transition: width 2s;
+        -o-transition: width 2s;
+    }
+}

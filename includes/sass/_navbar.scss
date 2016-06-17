@@ -1,0 +1,86 @@
+nav{
+    nav{
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
+        -moz-transition: background-color 0.5s;
+        -o-transition: background-color 0.5s;
+    }
+
+    // Jumbotron navbar
+    &.navbar-dark{
+        background-color: transparent;
+
+        // navbar 'burger' button
+        button{
+            color: white;
+        }
+    }
+
+    // Static navbar
+    &.navbar-light{
+        background-color: #373a3c;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.07);
+
+		  .navbar-brand{
+			  color: #eee;
+		  }
+
+		  .nav-link{
+			  color: #ccc !important;
+			  &.active{
+				  	color: #eee !important;
+					border-bottom: solid 2px $brand-primary;
+			  }
+		  }
+    }
+
+    // Before slide animation
+    &.navbar-fixed-top{
+        top: -60px;
+    }
+
+    // My name
+    .navbar-brand{
+        $size: 1.3em;
+
+        font-size: $size;
+        font-weight: 300;
+    }
+
+    .navbar-nav{
+        // Nav links
+        .nav-link{
+            display: inline;     // Fix for blocking issue (.navbar-nav) Bootstrap v4 alpha 2
+            line-height: 200%;
+        }
+    }
+
+	 // Collapsed nav
+    @media (max-width: map-get($grid-breakpoints, md)){
+        .navbar-brand{
+            width: 100%;
+            z-index: -1;
+
+            position: absolute;
+            top: 0.3em;
+            left: 0;
+        }
+
+        .nav-link{
+            $l-margin: 1em;
+            $border-size: 0.1em;
+            display: block !important;
+            padding-left: 1em;
+            margin: 1em 0;
+
+            &.active{
+                margin-left: $l-margin - $border-size;
+                border-bottom: none !important;
+                border-left: solid $border-size $brand-primary;
+                line-height: 1em;
+            }
+
+            margin-left: $l-margin;
+        }
+    }
+}
