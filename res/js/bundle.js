@@ -40,7 +40,7 @@ const rest = require('rest');
 const mime = require('rest/interceptor/mime');
 const client = rest.wrap(mime);
 
-const api_root = "http://andythedeveloper.com/api/github/commits";
+const api_root = "http://andythedeveloper.com:3000/api/github/commits";
 
 class CommitComponent extends React.Component{
 	constructor(){
