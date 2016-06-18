@@ -16,13 +16,7 @@
 		margin-bottom: 1em;
 	}
 
-	@media (max-width: map-get($grid-breakpoints, md)){
-		#infoCol{
-			margin-top: 5em;
-		}
-
-		.description{
-			margin-bottom: 5em;
-		}
+	@media (max-width: map-get($grid-breakpoints, lg)){
+		padding: 5em 0;
 	}
 }

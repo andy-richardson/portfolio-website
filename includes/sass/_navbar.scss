@@ -1,86 +1,70 @@
 nav{
-    nav{
-        transition: background-color 0.5s;
-        -webkit-transition: background-color 0.5s;
-        -moz-transition: background-color 0.5s;
-        -o-transition: background-color 0.5s;
-    }
+	$font-color: #fff;
+	font-family: 'Lato', sans-serif;
 
-    // Jumbotron navbar
-    &.navbar-dark{
-        background-color: transparent;
 
-        // navbar 'burger' button
-        button{
-            color: white;
-        }
-    }
+	button{
+		color: $font-color;
+		opacity: 0.8;
+	}
 
-    // Static navbar
-    &.navbar-light{
-        background-color: #373a3c;
-        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.07);
+	// My name
+	.navbar-brand{
+		$size: 1.3em;
+		color: $font-color;
+		opacity: 0.8;
 
-		  .navbar-brand{
-			  color: #eee;
-		  }
+		font-size: $size;
+		font-weight: 600;
 
-		  .nav-link{
-			  color: #ccc !important;
-			  &.active{
-				  	color: #eee !important;
-					border-bottom: solid 2px $brand-primary;
-			  }
-		  }
-    }
+		&:hover{
+			opacity: 1;
+		}
+	}
 
-    // Before slide animation
-    &.navbar-fixed-top{
-        top: -60px;
-    }
+	.navbar-nav{
+		// Nav links
+		.nav-link{
+			color: $font-color !important;
+			opacity: 0.8;
+			font-size: 1.3em;
+			font-weight: 600;
 
-    // My name
-    .navbar-brand{
-        $size: 1.3em;
+			display: inline;
+			line-height: 200%;
 
-        font-size: $size;
-        font-weight: 300;
-    }
+			&:hover{
+				opacity: 1;
+			}
+		}
+	}
 
-    .navbar-nav{
-        // Nav links
-        .nav-link{
-            display: inline;     // Fix for blocking issue (.navbar-nav) Bootstrap v4 alpha 2
-            line-height: 200%;
-        }
-    }
+	// Collapsed nav
+	@media (max-width: map-get($grid-breakpoints, md) - 1){
+		.navbar-brand{
+			width: 100%;
+			z-index: -1;
 
-	 // Collapsed nav
-    @media (max-width: map-get($grid-breakpoints, md)){
-        .navbar-brand{
-            width: 100%;
-            z-index: -1;
+			position: absolute;
+			top: 0.3em;
+			left: 0;
+		}
 
-            position: absolute;
-            top: 0.3em;
-            left: 0;
-        }
+		.nav-link{
+			$l-margin: 1em;
+			$border-size: 0.1em;
+			display: block !important;
+			padding-left: 1em;
+			margin: 1em 0;
 
-        .nav-link{
-            $l-margin: 1em;
-            $border-size: 0.1em;
-            display: block !important;
-            padding-left: 1em;
-            margin: 1em 0;
+			&.active{
+				margin-left: $l-margin - $border-size;
+				border-bottom: none !important;
+				border-left: solid $border-size $brand-primary;
+				line-height: 1em;
+			}
 
-            &.active{
-                margin-left: $l-margin - $border-size;
-                border-bottom: none !important;
-                border-left: solid $border-size $brand-primary;
-                line-height: 1em;
-            }
-
-            margin-left: $l-margin;
-        }
-    }
+			margin-left: $l-margin;
+		}
+	}
 }
