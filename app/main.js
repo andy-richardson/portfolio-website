@@ -10,7 +10,10 @@ const bootstrap = require('bootstrap');
 
 // Selectors & states
 const selector = {
-	age: "#age"
+	age: "#age",
+	repos: "react-repos",
+	commits: "react-commits",
+	followers: "react-follows"
 };
 
 // Initial configuration
@@ -19,3 +22,8 @@ smoothScroll('.local-link');
 
 // Form validation
 require('../includes/javascript/formSubmitListener.js');
+
+// Dynamic Git Info
+const ReactDOM = require('react-dom');
+const githubRender = require('../includes/javascript/GithubRender.js');
+githubRender(selector, 'andyrichardson');
