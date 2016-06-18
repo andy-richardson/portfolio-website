@@ -1,12 +1,16 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const RepoComponent = require('./RepoComponent.js');
+const FollowComponent = require('./FollowComponent.js');
+const CommitComponent = require('./CommitComponent.js');
 // const rest = require('rest');
 
 var x = 10;
 
 const run = function(id, username){
 	ReactDOM.render(React.createElement(RepoComponent, {username: username}), document.getElementById(id.repos));
+	ReactDOM.render(React.createElement(FollowComponent, {username: username}), document.getElementById(id.followers));
+	ReactDOM.render(React.createElement(CommitComponent, {username: username}), document.getElementById(id.commits));
 }
 //
 // class GithubRender extends React.Component{

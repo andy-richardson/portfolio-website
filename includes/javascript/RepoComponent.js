@@ -25,7 +25,7 @@ class RepoComponent extends React.Component{
 		client({path: api_root + this.props.username})
 		.then((data) => {
 			this.setState({data: data.entity.public_repos});
-		})
+		});
 	}
 
 	render(){

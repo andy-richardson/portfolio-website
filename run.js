@@ -22,4 +22,4 @@ sass.render({
 
 	bundle_css.write(data.css);
 	console.log('CSS compilation complete');
-})
+});
