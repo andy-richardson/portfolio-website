@@ -7,7 +7,7 @@ const client = rest.wrap(mime);
 
 const api_root = "https://api.github.com/users/";
 
-class RepoComponent extends React.Component{
+class FollowComponent extends React.Component{
 	constructor(){
 		super();
 		this.state = { data: ".." }
@@ -24,7 +24,7 @@ class RepoComponent extends React.Component{
 	updateState(){
 		client({path: api_root + this.props.username})
 		.then((data) => {
-			this.setState({data: data.entity.public_repos});
+			this.setState({data: data.entity.followers});
 		});
 	}
 
@@ -33,4 +33,4 @@ class RepoComponent extends React.Component{
 	}
 }
 
-module.exports = RepoComponent;
+module.exports = FollowComponent;
