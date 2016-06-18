@@ -1,8 +1,20 @@
 #github-stats{
+	$github-blue: #4078c0;
+
 	h4{
 		font-size: 3em;
 		font-weight: 600;
 		margin-top: 0.6em;
-		color: #4078c0;
 	}
+
+	a{
+		color: $github-blue;
+
+		&:hover, &:focus{
+			text-decoration: none;
+			color: darken($github-blue, 12.5%);
+		}
+	}
+
+
 }
