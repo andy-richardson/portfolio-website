@@ -1,13 +1,14 @@
 body, html{
-    width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 body{
-    background: url('../../res/img/bg-compressed.jpg') no-repeat center center fixed;
-	 background-size: cover;
-	 height: 100%;
-    background-attachment: fixed;
-    background-position: center;
+	background: url('../../res/img/bg-compressed.jpg') no-repeat center center fixed;
+	background-size: cover;
+	height: 100%;
+	background-attachment: fixed;
+	background-position: center;
 
-	 font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
