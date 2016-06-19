@@ -39,11 +39,18 @@ router.route('/mail/sendmessage')
 .post(function(req, res, end){
 	var enquirynum = 10;
 
+	// Create message for local email
+	var text = "";
+	if(req.body.number){
+		text = 'Number: ' + req.body.number + '\n';
+	}
+	text += req.body.message;
+
 	transporter.sendMail({
-		from: `"${req.body.first_name} ${req.body.last_name} <${req.body.email}>"`,
+		from: `"${req.body.first_name} ${req.body.last_name} ${req.body.email}"`,
 		to: '"Andy Richardson" <contact@andythedeveloper.com>',
 		subject: 'Enquiry: ' + req.body.subject,
-		text: req.body.message
+		text: text
 	}, function(err){
 		if(err){
 			res.writeHead(500);
