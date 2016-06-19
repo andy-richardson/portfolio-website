@@ -40,7 +40,7 @@ const rest = require('rest');
 const mime = require('rest/interceptor/mime');
 const client = rest.wrap(mime);
 
-const api_root = "http://andythedeveloper.com:3000/api/github/commits";
+const api_root = "https://andythedeveloper.com/api/github/commits";
 
 class CommitComponent extends React.Component{
 	constructor(){
@@ -308,9 +308,10 @@ $(document).ready(function() {
             $("#formSuccess").hide();
 
             $.ajax({
-                url: 'res/php/sendMail.php',
+                url: 'api/mail/sendmessage',
                 type: 'POST',
-                dataType: 'html',
+					 timeout: 10000,
+                dataType: 'json',
                 data: {
                   first_name: $("#firstInput").val(),
                   last_name: $("#lastInput").val(),

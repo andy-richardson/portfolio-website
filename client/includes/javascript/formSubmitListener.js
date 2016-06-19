@@ -63,9 +63,10 @@ $(document).ready(function() {
             $("#formSuccess").hide();
 
             $.ajax({
-                url: 'res/php/sendMail.php',
+                url: 'api/mail/sendmessage',
                 type: 'POST',
-                dataType: 'html',
+					 timeout: 10000,
+                dataType: 'json',
                 data: {
                   first_name: $("#firstInput").val(),
                   last_name: $("#lastInput").val(),
