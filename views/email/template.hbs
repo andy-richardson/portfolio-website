@@ -12,8 +12,11 @@
 
 			<blockquote>
 				<b>From:</b> {{first_name}} {{last_name}} &lt;{{email}}&gt;<br>
-				<b>Subject:</b> {{subject}}<br><br>
-
+				<b>Subject:</b> {{subject}}
+				{{#if number}}
+				<b>Number:</b> {{number}} 
+				{{/if}}
+				<br><br>
 				{{message}}
 			</blockquote>
 		</p>
