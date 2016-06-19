@@ -3,10 +3,11 @@ body, html{
 }
 
 body{
-    background-image: url(../img/bg-compressed.jpg);
+    background-image: url('res/img/bg-compressed.jpg') no-repeat center center fixed;
+	 background-size: cover;
+	 height: 100%;
     background-attachment: fixed;
     background-position: center;
-    background-size: cover;
 
 	 font-family: 'Open Sans', sans-serif;
 }
