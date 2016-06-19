@@ -24537,7 +24537,7 @@ module.exports={
   "_args": [
     [
       "elliptic@^6.0.0",
-      "/home/andy/Development/portfolio_website/node_modules/browserify-sign"
+      "/home/andy/Development/andythedeveloper/node_modules/browserify-sign"
     ]
   ],
   "_from": "elliptic@>=6.0.0 <7.0.0",
@@ -24572,7 +24572,7 @@ module.exports={
   "_shasum": "17781f2109ab0ec686b146bdcff5d2e8c6aeceda",
   "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "/home/andy/Development/portfolio_website/node_modules/browserify-sign",
+  "_where": "/home/andy/Development/andythedeveloper/node_modules/browserify-sign",
   "author": {
     "email": "fedor@indutny.com",
     "name": "Fedor Indutny"
@@ -94426,7 +94426,7 @@ module.exports={
   "_args": [
     [
       "tough-cookie@~2.2.0",
-      "/home/andy/Development/portfolio_website/node_modules/request"
+      "/home/andy/Development/andythedeveloper/node_modules/request"
     ]
   ],
   "_from": "tough-cookie@>=2.2.0 <2.3.0",
@@ -94460,7 +94460,7 @@ module.exports={
   "_shasum": "c83a1830f4e5ef0b93ef2a3488e724f8de016ac7",
   "_shrinkwrap": null,
   "_spec": "tough-cookie@~2.2.0",
-  "_where": "/home/andy/Development/portfolio_website/node_modules/request",
+  "_where": "/home/andy/Development/andythedeveloper/node_modules/request",
   "author": {
     "email": "jstashewsky@salesforce.com",
     "name": "Jeremy Stashewsky"
