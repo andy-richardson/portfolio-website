@@ -1,9 +1,20 @@
 const app = require('../app');
+const config = require('../private/config')
 const express = require('express');
 const router = express.Router();
 const GithubCommits = require('../includes/GithubCommits');
-const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport();
+const mail = require('nodemailer');
+
+const localTransporter = mail.createTransport();
+const transporter = mail.createTransport({
+    host: "andythedeveloper.com",
+    secure: false,
+    port: 465,
+    auth: config.email,
+	 tls:{
+		 rejectUnauthorized: false
+	 }
+});
 
 // handlebars
 var hbs = require('nodemailer-express-handlebars');
@@ -46,13 +57,14 @@ router.route('/mail/sendmessage')
 	}
 	text += req.body.message;
 
-	transporter.sendMail({
+	localTransporter.sendMail({
 		from: `"${req.body.first_name} ${req.body.last_name} ${req.body.email}"`,
 		to: '"Andy Richardson" <contact@andythedeveloper.com>',
 		subject: 'Enquiry: ' + req.body.subject,
 		text: text
 	}, function(err){
 		if(err){
+			console.log(err);
 			res.writeHead(500);
 			return res.end();
 		}
