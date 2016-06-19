@@ -3,16 +3,20 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 // var handlebars = require('handlebars');
 
 var app = express();
 
 // uncomment after placing your favicon in /public
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(__dirname, 'public/fav256.png')));
+
+// Access log
+var accessLogStream = fs.createWriteStream('/var/log/express/access.log');
+app.use(logger('combined', {stream: accessLogStream}));
 
 // Routes
 const api = require('./routes/api');

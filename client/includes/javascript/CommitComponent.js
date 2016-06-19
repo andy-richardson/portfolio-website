@@ -26,7 +26,7 @@ class CommitComponent extends React.Component{
 		var request = require('request')
 
 		// use a timeout value of 10 seconds
-		var timeoutInMilliseconds = 10*1000
+		var timeoutInMilliseconds = 30*1000
 		var opts = {
 			url: api_root,
 			timeout: timeoutInMilliseconds
