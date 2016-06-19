@@ -22,7 +22,8 @@ app.set('port', port);
 */
 var credentials = {
 	key: fs.readFileSync('/root/ssl/andythedeveloper.com.key', 'utf8'),
-	cert: fs.readFileSync('/root/ssl/andythedeveloper_com.crt', 'utf8')
+	cert: fs.readFileSync('/root/ssl/andythedeveloper_com.crt', 'utf8'),
+	ca: fs.readFileSync('/root/ssl/andythedeveloper_com.ca-bundle', 'utf8')	
 };
 var server = https.createServer(credentials, app);
 
