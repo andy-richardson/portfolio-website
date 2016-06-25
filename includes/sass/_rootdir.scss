@@ -1,0 +1,261 @@
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+
+// General
+body, html{
+    width: 100%;
+}
+
+body{
+    background-image: url(../img/bg-compressed.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+p{
+    font-weight: 300;
+    font-size: $font-size-h5;
+}
+
+a{
+    font-weight: 500;
+}
+
+// Navigation
+nav{
+    nav{
+        transition: background-color 0.5s;
+        -webkit-transition: background-color 0.5s;
+        -moz-transition: background-color 0.5s;
+        -o-transition: background-color 0.5s;
+    }
+
+    // Jumbotron navbar
+    &.navbar-dark{
+        background-color: none;
+
+        // navbar 'burger' button
+        button{
+            color: white;
+        }
+    }
+
+    // Light navbar
+    &.navbar-light{
+        background-color: #fff;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.07);
+
+		  .nav-link{
+			  &.active{
+				  	color: $navbar-light-active-color;
+					border-bottom: solid 2px $brand-primary;
+			  }
+		  }
+    }
+
+    // Before slide animation
+    &.navbar-fixed-top{
+        top: -60px;
+    }
+
+    // My name
+    .navbar-brand{
+        $size: 1.3em;
+
+        font-size: $size;
+        font-weight: 300;
+    }
+
+    .navbar-nav{
+        // Nav links
+        .nav-link{
+            display: inline;     // Fix for blocking issue (.navbar-nav) Bootstrap v4 alpha 2
+            line-height: 200%;
+        }
+    }
+
+    @media (max-width: map-get($grid-breakpoints, md)){
+        .navbar-brand{
+            width: 100%;
+            z-index: -1;
+
+            position: absolute;
+            top: 0.3em;
+            left: 0;
+        }
+
+        .nav-link{
+            $l-margin: 1em;
+            $border-size: 0.1em;
+            display: block !important;
+            padding-left: 1em;
+            margin: 1em 0;
+
+            &.active{
+                margin-left: $l-margin - $border-size;
+                border-bottom: none !important;
+                border-left: solid $border-size $brand-primary;
+                line-height: 1em;
+            }
+
+            margin-left: $l-margin;
+        }
+    }
+}
+
+// Jumbotron
+.jumbotron{
+    color: white;
+    padding: 10em 2em 12em 2em;
+
+    button{
+		 $color: #444;
+        margin-right: 1em;
+		  background-color: $color;
+		  border: none;
+
+		  &:hover, &:focus, &:active{
+			  background-color: darken($color, 10%) !important;
+		  }
+    }
+
+
+    @media (max-width: map-get($grid-breakpoints, md)){
+        padding: 5em 2em 6em 2em;
+
+        button{
+            margin-top: 1em;
+        }
+    }
+}
+
+// Rows
+.row{
+    padding: 3em 0;
+    background-color: #fff;
+    width: 100%;
+    margin: 0;
+
+    h1{
+        margin-bottom: 2em;
+    }
+
+    @media (max-width: map-get($grid-breakpoints, md)){
+        #infoCol{
+            margin-top: 5em;
+        }
+
+        .description{
+            margin-bottom: 5em;
+        }
+    }
+}
+
+.divider{
+    width: 100%;
+    height: 8em;
+}
+
+.video-icon{
+    font-size: 9em !important;
+}
+
+h5{
+    font-weight: 400;
+}
+
+.no-padding{
+    padding: 0;
+}
+
+.bio-row{
+    display: block;
+}
+
+#about-me{
+    img{
+        width: 80%;
+    }
+}
+
+#recent-projects{
+    img{
+        margin: 2em 0;
+        width: 100%;
+    }
+
+    h3{
+        font-weight: 400;
+        margin-top: 2.7em;
+    }
+
+    .container-fluid{
+        margin-top: 2em;
+    }
+}
+
+#in-action{
+    i{
+        $color: #333;
+        color: $color;
+
+        cursor: pointer;
+
+        &:hover{
+            color: lighten($color, 10%);
+        }
+    }
+
+    video{
+        width: 100%;
+    }
+}
+
+#contact{
+}
+
+footer{
+    background-color: #f7f7f7 !important;
+    padding: 2em 0;
+    border-top: solid 1px #eee;
+
+    .nav a{
+        color: $gray;
+
+        &:hover{
+            color: darken($gray, 20%);
+        }
+    }
+
+    #copyright{
+        font-size: 0.6em;
+
+        margin-top: 2em;
+    }
+}
+
+.stats{
+    padding-top: 2em;
+
+    $stats-font: 0.85em;
+
+    p{
+        font-size: $stats-font;
+    }
+
+    .stat-bar{
+        height: $stats-font * 1.5;
+        width: 0%;
+        background-color: $brand-primary;
+
+        transition: width 2s;
+        -webkit-transition: width 2s;
+        -moz-transition: width 2s;
+        -o-transition: width 2s;
+    }
+}

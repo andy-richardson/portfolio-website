@@ -1,0 +1,10 @@
+@import "variables";
+
+// $brand-primary: #e33;
+$brand-primary: #27c;
+
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: $btn-primary-bg;
+
+$link-color: darken($brand-primary, 5%);
+$link-hover-color:           darken($link-color, 15%);
