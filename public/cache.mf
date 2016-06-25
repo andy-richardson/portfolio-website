@@ -4,6 +4,7 @@ CACHE:
 /index.html
 /res/js/bundle.js
 /res/css/bundle.css
+/res/css/fonts.css
 /res/img/linkedin.png
 /res/img/medium.png
 /res/img/twitter.png
