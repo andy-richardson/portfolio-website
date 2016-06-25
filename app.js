@@ -4,11 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-// var handlebars = require('handlebars');
+
 
 var app = express();
 
-// uncomment after placing your favicon in /public
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,19 +17,14 @@ app.use(favicon(path.join(__dirname, 'public/fav256.png')));
 var accessLogStream = fs.createWriteStream('/var/log/express/access.log');
 app.use(logger('combined', {stream: accessLogStream}));
 
-// Routes
+// API Routes
 const api = require('./routes/api');
 app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  // res.redirect('/');
-  next(err);
+  return res.redirect('/');
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
