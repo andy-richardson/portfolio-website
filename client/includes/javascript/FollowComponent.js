@@ -1,36 +1,19 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-const rest = require('rest');
-const mime = require('rest/interceptor/mime');
-const client = rest.wrap(mime);
-
-const api_root = "https://api.github.com/users/";
-
-class FollowComponent extends React.Component{
+class GithubComponent extends React.Component{
 	constructor(){
 		super();
-		this.state = { data: ".." }
+		this.state = ".."
 	}
 
-	componentDidMount(){
-		this.updateState();
-
-		setInterval(() => {
-			this.updateState();
-		}, 20000);
-	}
-
-	updateState(){
-		client({path: api_root + this.props.username})
-		.then((data) => {
-			this.setState({data: data.entity.followers});
-		});
+	updateState(data){
+		this.setState(data);
 	}
 
 	render(){
-		return React.DOM.h4(null, this.state.data);
+		return React.DOM.h4(null, this.state);
 	}
 }
 
-module.exports = FollowComponent;
+module.exports = GithubComponent;

@@ -63,7 +63,7 @@ $(document).ready(function() {
             $("#formSuccess").hide();
 
             $.ajax({
-                url: 'api/mail/sendmessage',
+                url: 'api/mail',
                 type: 'POST',
 					 timeout: 10000,
                 dataType: 'json',
