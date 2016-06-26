@@ -8,10 +8,10 @@ var hbs = require('nodemailer-express-handlebars');
 var options = {
 	viewEngine: {
 		extname: '.hbs',
-		layoutsDir: '../views/email/',
+		layoutsDir: 'server/views/email/',
 		defaultLayout : 'template'
 	},
-	viewPath: '../views/email/',
+	viewPath: 'server/views/email/',
 	extName: '.hbs'
 };
 
@@ -38,6 +38,18 @@ router.route('/')
 	}
 	text += req.body.message;
 
+	transporter.sendMail({
+		from: '"Andy Richardson" <contact@andythedeveloper.com>',
+		to: req.body.email,
+		subject: 'Enquiry: ' + req.body.subject,
+		template: 'template',
+		context: req.body
+	}, function(error){
+		if(error){
+			console.log(error);
+		}
+	});
+
 	localTransporter.sendMail({
 		from: `"${req.body.first_name} ${req.body.last_name} ${req.body.email}"`,
 		to: '"Andy Richardson" <contact@andythedeveloper.com>',
@@ -51,18 +63,6 @@ router.route('/')
 		}
 
 		return res.end('{}');
-	});
-
-	transporter.sendMail({
-		from: '"Andy Richardson" <contact@andythedeveloper.com>',
-		to: req.body.email,
-		subject: 'Enquiry #' + enquirynum + ": " + req.body.subject,
-		template: 'template',
-		context: req.body
-	}, function(error){
-		if(error){
-			console.log(error);
-		}
 	});
 });
 
