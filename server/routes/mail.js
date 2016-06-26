@@ -3,6 +3,18 @@ const router = express.Router();
 const config = require('../private/config')
 const mail = require('nodemailer');
 
+// Mail templating
+var hbs = require('nodemailer-express-handlebars');
+var options = {
+	viewEngine: {
+		extname: '.hbs',
+		layoutsDir: '../views/email/',
+		defaultLayout : 'template'
+	},
+	viewPath: '../views/email/',
+	extName: '.hbs'
+};
+
 // Mail transporters
 const localTransporter = mail.createTransport();
 const transporter = mail.createTransport({
@@ -14,18 +26,7 @@ const transporter = mail.createTransport({
 		rejectUnauthorized: false
 	}
 });
-
-// Mail templating
-var hbs = require('nodemailer-express-handlebars');
-var options = {
-	viewEngine: {
-		extname: '.hbs',
-		layoutsDir: 'views/email/',
-		defaultLayout : 'template'
-	},
-	viewPath: 'views/email/',
-	extName: '.hbs'
-};
+transporter.use('compile', hbs(options));
 
 // Email submission
 router.route('/')
@@ -49,12 +50,9 @@ router.route('/')
 			return res.end();
 		}
 
-		res.writeHead(200, 'Content-Type: application/json');
 		return res.end('{}');
 	});
 
-	// Render and send confirmation
-	transporter.use('compile', hbs(options));
 	transporter.sendMail({
 		from: '"Andy Richardson" <contact@andythedeveloper.com>',
 		to: req.body.email,
