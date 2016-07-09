@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /res/
-Allow: /res/img/andy.jpg
+Disallow: /res/downloads
