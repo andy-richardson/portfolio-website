@@ -15,7 +15,7 @@ CACHE:
 /res/img/reactjs.png
 /res/img/tux.png
 /res/img/bg-compressed.jpg
-/res/img/crop.jpg
+/res/img/andy.jpg
 
 NETWORK:
 *
