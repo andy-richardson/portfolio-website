@@ -1,5 +1,6 @@
 "use strict"
 const request = require('request');
+const gycon = require("github-yearly-contributions");
 
 class GithubCommits{
 	constructor(username, cacherate){
@@ -16,22 +17,8 @@ class GithubCommits{
 	}
 
 	updateCommits(){
-		const url = "http://github.com/" + this.username;
-		const opts = {
-			url: url,
-			timeout: 100000
-		};
-
-		request(opts, (err, response, body) => {
-			if (err) {
-				this.commits.cache = 'error';
-				console.log('Caching error');
-			}
-
-			// Get contribution count
-			let split = body.split(" ");
-			let index = split.indexOf('contributions') - 1;
-			this.cache.commits = split[index];
+		gycon("andyrichardson", (count) => {
+				this.cache.commits = count
 		});
 	}
 
