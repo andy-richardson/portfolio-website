@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/andyrichardson/portfolio_website#readme",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^4.0.0-alpha.2",
     "browserify": "^13.0.1",
@@ -32,6 +34,7 @@
     "request": "^2.72.0",
     "rest": "^2.0.0",
     "serve-favicon": "^2.3.0",
-    "tether": "^1.3.2"
+    "tether": "^1.3.2",
+    "uglifyify": "^3.0.4"
   }
 }

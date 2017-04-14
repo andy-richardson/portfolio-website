@@ -8,6 +8,8 @@ const bundle_js = fs.createWriteStream(path.join(__dirname, 'server/public/res/j
 const bundle_css = fs.createWriteStream(path.join(__dirname, 'server/public/res/css/bundle.css'));
 
 // Compile Javascript
+js_compiler.transform("babelify", {presets: [["es2015", "react"]]});
+js_compiler.transform({global: true}, 'uglifyify');
 js_compiler.add(path.join(__dirname, '/client/main.js'));
 js_compiler.bundle(function(err){
 	if(err){
