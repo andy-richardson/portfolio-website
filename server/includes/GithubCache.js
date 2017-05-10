@@ -17,7 +17,10 @@ class GithubCommits{
 	}
 
 	updateCommits(){
-		gycon("andyrichardson", (count) => {
+		gycon("andyrichardson", (err, count) => {
+				if(err) { 
+					return console.log(err);
+				}
 				this.cache.commits = count
 		});
 	}

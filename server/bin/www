@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+// Error handling
+process.on('uncaughtException', function (exception) {
+  console.log(exception);
+});
+
+process.on('unhandledRejection', function (exception) {
+  console.log(exception);
+});
+
 /**
 * Module dependencies.
 */
@@ -14,13 +23,36 @@ var fs = require('fs');
 * Get port from environment and store in Express.
 */
 
-var port = normalizePort(process.env.PORT || '8000');
+var port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
+
+/**
+* Create HTTPS server.
+*/
+
+var keydir = '/etc/letsencrypt/live/mail.andythedeveloper.com/';
+
+var credentials = {
+	key: fs.readFileSync(keydir + 'privkey.pem', 'utf8'),
+	cert: fs.readFileSync(keydir + 'fullchain.pem', 'utf8')
+};
+var server = https.createServer(credentials, app);
+
+/**
+* HTTP redirect to HTTPS
+*/
+http.createServer(function (req, res) {
+	res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+	res.end();
+}).listen(80);
+
+// For certificate validation
+// http.createServer(app).listen(80);
 
 /**
 * SERVER FOR DEBUGGING ONLY
 */
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
 /**
 * Listen on provided port, on all network interfaces.
@@ -87,5 +119,5 @@ function onListening() {
 	var bind = typeof addr === 'string'
 	? 'pipe ' + addr
 	: 'port ' + addr.port;
-	debug('Listening on ' + bind);
+	console.log('Listening on ' + bind);
 }
