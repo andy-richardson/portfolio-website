@@ -19,7 +19,7 @@ var options = {
 const localTransporter = mail.createTransport();
 const transporter = mail.createTransport({
 	sendmail: true,
-	host: "mail.andythedeveloper.com",
+	host: config.email.host,
 	newline: 'unix',
 	path: '/usr/sbin/sendmail'
 });
@@ -36,7 +36,7 @@ router.route('/')
 	text += req.body.message;
 
 	transporter.sendMail({
-		from: '"Andy Richardson" <contact@andythedeveloper.com>',
+		from: config.email.user,
 		to: req.body.email,
 		subject: 'Enquiry: ' + req.body.subject,
 		template: 'template',
@@ -49,7 +49,7 @@ router.route('/')
 
 	localTransporter.sendMail({
 		from: `"${req.body.first_name} ${req.body.last_name} ${req.body.email}"`,
-		to: '"Andy Richardson" <contact@andythedeveloper.com>',
+		to: config.email.user,
 		subject: 'Enquiry: ' + req.body.subject,
 		text: text
 	}, function(err){

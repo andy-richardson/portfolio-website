@@ -1,6 +1,6 @@
 module.exports = {
 	email : {
-		user: 'exampleuser',
-		pass: 'examplepass'	
+		hostname: 'mail.examplehost.com',
+		user: '"Joe Bloggs" <joe@examplehost.com>'
 	}
 }
