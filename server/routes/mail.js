@@ -18,13 +18,10 @@ var options = {
 // Mail transporters
 const localTransporter = mail.createTransport();
 const transporter = mail.createTransport({
-	host: "andythedeveloper.com",
-	secure: false,
-	port: 465,
-	auth: config.email,
-	tls:{
-		rejectUnauthorized: false
-	}
+	sendmail: true,
+	host: "mail.andythedeveloper.com",
+	newline: 'unix',
+	path: '/usr/sbin/sendmail'
 });
 transporter.use('compile', hbs(options));
 
