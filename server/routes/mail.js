@@ -19,7 +19,7 @@ var options = {
 const localTransporter = mail.createTransport();
 const transporter = mail.createTransport({
 	sendmail: true,
-	host: config.email.host,
+	host: config.email.hostname,
 	newline: 'unix',
 	path: '/usr/sbin/sendmail'
 });
