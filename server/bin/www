@@ -30,7 +30,7 @@ app.set('port', port);
 * Create HTTPS server.
 */
 
-var keydir = '/etc/letsencrypt/live/mail.andythedeveloper.com/';
+var keydir = '/etc/letsencrypt/live/andythedeveloper.com/';
 
 var credentials = {
 	key: fs.readFileSync(keydir + 'privkey.pem', 'utf8'),

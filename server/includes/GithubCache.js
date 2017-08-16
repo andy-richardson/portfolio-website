@@ -18,7 +18,7 @@ class GithubCommits{
 
 	updateCommits(){
 		gycon("andyrichardson", (err, count) => {
-				if(err) { 
+				if(err) {
 					return console.log(err);
 				}
 				this.cache.commits = count
@@ -38,7 +38,7 @@ class GithubCommits{
 		request(opts, (err, response, body) => {
 			if (err) {
 				this.cache.followers = 'error';
-				console.log('caching error');
+				return console.log('caching error');
 			}
 
 			var result = JSON.parse(body)
