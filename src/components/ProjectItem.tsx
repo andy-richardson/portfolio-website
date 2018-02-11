@@ -1,6 +1,8 @@
 import { Avatar, Card, Icon, Row, Tag } from 'antd';
 import React, { Component } from 'react';
 
+import GithubLogo from 'images/github-logo.png';
+
 interface Props {
   title: string;
   description: string;
@@ -60,7 +62,7 @@ export default class ProjectItem extends Component<Props, State> {
     return (
       <Card hoverable={true} style={styles.card}>
         <Row style={styles.row}>
-          <img style={styles.img} src={this.props.logo} />
+          <img style={styles.img} src={GithubLogo} />
           <span>
             <h3 style={styles.header}>{this.props.title}</h3>
             <p>{this.props.description}</p>

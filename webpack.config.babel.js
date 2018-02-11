@@ -33,7 +33,11 @@ const Config: webpack.Configuration = {
         options: {
           name: "fonts/[name].[ext]",
         },
-      }
+      },
+      {
+        loader: 'url-loader',
+        test: /\.(png)$/,
+      },
     ],
   },
   output: {
@@ -49,7 +53,10 @@ const Config: webpack.Configuration = {
     new ExtractTextPlugin('bundle.css'),
   ],
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    alias: {
+      images: `${__dirname}/assets/images`,
+    },
+    extensions: ['.ts', '.tsx', '.js', '.png'],
   },
 };
 
