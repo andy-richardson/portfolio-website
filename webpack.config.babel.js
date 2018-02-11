@@ -4,7 +4,8 @@ import HTMLWebpackPlugin from 'html-webpack-plugin'; // tslint:disable-line:no-i
 const Config: webpack.Configuration = {
   devServer: {
     contentBase: '/assets',
-    publicPath: '/'
+    publicPath: '/',
+    historyApiFallback: true,
   },
   entry: [
     './src/index.tsx',
@@ -55,6 +56,8 @@ const Config: webpack.Configuration = {
   resolve: {
     alias: {
       images: `${__dirname}/assets/images`,
+      pages: `${__dirname}/src/pages`,
+      components: `${__dirname}/src/components`,
     },
     extensions: ['.ts', '.tsx', '.js', '.png'],
   },
