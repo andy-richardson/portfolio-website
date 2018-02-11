@@ -9,19 +9,20 @@ const projects: any[] = [
   {
     description: 'Be notified of updates to Atom and install without leaving the editor.',
     downloads: 1000,
-    logo: 'https://image.flaticon.com/icons/png/512/25/25231.png',
+    link: 'https://atom.io/packages/atom-updater-linux',
+    repo: 'https://github.com/andyrichardson/atom-updater-linux',
     tags: ['Atom', 'Open Source'],
     title: 'Atom Updater Linux',
   },
   {
     description: 'Npm package for retrieving a users contributions made in the last year',
-    logo: 'https://image.flaticon.com/icons/png/512/25/25231.png',
+    repo: 'https://github.com/andy-richardson/github-yearly-contributions',
     tags: ['npm', 'Open Source'],
     title: 'Github Yearly Contributions',
   },
   {
     description: 'Personal website',
-    logo: 'https://image.flaticon.com/icons/png/512/25/25231.png',
+    repo: 'https://github.com/andy-richardson/portfolio-website',
     tags: ['React', 'Open Source'],
     title: 'Portfolio Website',
   },
@@ -41,7 +42,8 @@ export default class Projects extends Component<Props, State> {
             title={item.title}
             description={item.description}
             tags={item.tags}
-            logo={item.logo}
+            repo={item.repo}
+            link={item.link}
             downloads={item.downloads}
           />
         </Col>

@@ -6,8 +6,9 @@ import GithubLogo from 'images/github-logo.png';
 interface Props {
   title: string;
   description: string;
+  link: string;
+  repo: string;
   tags: string[];
-  logo: string;
   downloads?: number;
 }
 type State = any;
@@ -58,11 +59,18 @@ const tagColors: any = {
 };
 
 export default class ProjectItem extends Component<Props, State> {
+  constructor(props: any) {
+    super(props);
+    this.handleCardClick = this.handleCardClick.bind(this);
+  }
+
   public render() {
     return (
-      <Card hoverable={true} style={styles.card}>
+      <Card hoverable={true} style={styles.card} onClick={this.handleCardClick}>
         <Row style={styles.row}>
-          <img style={styles.img} src={GithubLogo} />
+          <a href={this.props.repo} target="_blank" onClick={this.handleRepoClick}>
+            <img style={styles.img} src={GithubLogo} />
+          </a>
           <span>
             <h3 style={styles.header}>{this.props.title}</h3>
             <p>{this.props.description}</p>
@@ -105,5 +113,13 @@ export default class ProjectItem extends Component<Props, State> {
         </Row>
       );
     }
+  }
+
+  private handleCardClick(): void {
+    window.open(this.props.link, '_blank');
+  }
+
+  private handleRepoClick(e: any): void {
+    e.stopPropagation();
   }
 }
