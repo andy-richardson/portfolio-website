@@ -9,10 +9,10 @@ type State = any;
 const FlexContainer = styled.div`
   background: #fff;
   display: flex;
-  padding: 20px 30%;
+  padding: 20px 25%;
 
   @media screen and (max-width: 1023px) {
-    padding: 60px;
+    padding: 30px;
     flex-direction: column;
   }
 
@@ -22,6 +22,7 @@ const FlexContainer = styled.div`
 `;
 
 const FlexItem = styled.div`
+  padding: 5%;
   display: flex;
   flex: 50%;
   flex-direction: column;
@@ -61,6 +62,29 @@ const TextItem = styled.p`
   }
 `;
 
+const ButtonContainer = FlexItem.extend`
+  text-align: center;
+  font-size: 24px;
+  position: absolute;
+  right: 15%;
+  transition: transform 300ms ease-out;
+  transform: translateY(100vh);
+
+  a {
+    color: #444;
+  }
+
+  &.animate-in {
+    transform: translateY(0vh);
+  }
+
+  @media screen and (max-width: 1023px) {
+    left: 0;
+    right: 0;
+    bottom: 50px;
+  }
+`;
+
 const HeaderText = styled.h1`
   transition: transform 500ms ease-out;
   transform: translateY(100vh);
@@ -75,6 +99,7 @@ const SubheaderText = styled.h2`
 
 export default class Hero extends Component<Props, State> {
   public state: State = {
+    buttonIn: false,
     headerIn: false,
     text1: false,
     text2: false,
@@ -86,6 +111,7 @@ export default class Hero extends Component<Props, State> {
     setTimeout(() => this.setState({text1: true}), 400);
     setTimeout(() => this.setState({text2: true}), 2000);
     setTimeout(() => this.setState({text3: true}), 3600);
+    setTimeout(() => this.setState({buttonIn: true}), 5200);
   }
 
   public render() {
@@ -114,6 +140,12 @@ export default class Hero extends Component<Props, State> {
           </TextItem>
 
         </TextContainer>
+
+        <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
+          <Link to="/about">
+            <Icon type="arrow-right" />
+          </Link>
+        </ButtonContainer>
       </FlexContainer>
     );
   }
