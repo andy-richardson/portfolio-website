@@ -1,7 +1,8 @@
-import { Col, Row } from 'antd';
+import { Col, Icon, Row } from 'antd';
 import React, { Component } from 'react';
-import ProjectItem from '../components/ProjectItem';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ProjectItem from '../components/ProjectItem';
 
 type Props = any;
 type State = any;
@@ -88,6 +89,29 @@ const ProjectItemContainer = styled.div`
   }
 `;
 
+const ButtonContainer = FlexItem.extend`
+  text-align: center;
+  font-size: 24px;
+  position: absolute;
+  right: 5%;
+  transition: transform 300ms ease-out;
+  transform: translateY(100vh);
+
+  a {
+    color: #444;
+  }
+
+  &.animate-in {
+    transform: translateY(0vh);
+  }
+
+  @media screen and (max-width: 1023px) {
+    display: block;
+    position: inherit;
+    max-height: min-content;
+  }
+`;
+
 const HeaderText = styled.h1`
   transition: transform 500ms ease-out;
   transform: translateY(100vh);
@@ -99,6 +123,7 @@ const HeaderText = styled.h1`
 
 export default class Projects extends Component<Props, State> {
   public state: State = {
+    buttonIn: false,
     headerIn: false,
     project1: false,
     project2: false,
@@ -110,6 +135,7 @@ export default class Projects extends Component<Props, State> {
     setTimeout(() => this.setState({project1: true}), 400);
     setTimeout(() => this.setState({project2: true}), 1000);
     setTimeout(() => this.setState({project3: true}), 1600);
+    setTimeout(() => this.setState({buttonIn: true}), 2400);
   }
 
   public render() {
@@ -142,6 +168,12 @@ export default class Projects extends Component<Props, State> {
         <ProjectsContainer>
           {projectItems}
         </ProjectsContainer>
+
+        <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
+          <Link to="/projects">
+            <Icon type="arrow-right" />
+          </Link>
+        </ButtonContainer>
       </FlexContainer>
     );
   }

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Hero from 'pages/Hero';
 import About from 'pages/About';
-import Projects from './Projects';
+import Projects from 'pages/Projects';
 const { Header, Sider, Content } = Layout;
 
 type Props = any;
@@ -34,6 +34,7 @@ export default class App extends Component<Props, State> {
         <Layout style={layoutStyle}>
           <Route exact={true} path="/" component={Hero}/>
           <Route path="/about" component={About}/>
+          <Route path="/projects" component={Projects}/>
         </Layout>
       </Router>
     );
