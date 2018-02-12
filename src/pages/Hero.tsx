@@ -34,9 +34,10 @@ const animationDuration = 900;
 const FlexContainer = styled.div`
   background: #fff;
   display: flex;
-  padding: 60px;
+  padding: 20px 30%;
 
   @media screen and (max-width: 1023px) {
+    padding: 60px;
     flex-direction: column;
   }
 
@@ -47,7 +48,7 @@ const FlexContainer = styled.div`
   .ant-tag {
     margin-top: 20px;
     opacity: 0;
-    transition: opacity ${animationDuration} linear;
+    transition: opacity 900ms ease-in-out;
 
     &.fadeIn {
       opacity: 1;
@@ -158,6 +159,6 @@ export default class Hero extends Component<Props, State> {
       tagColor: tagColors[index % tagColors.length],
     });
     setTimeout(() => this.setState({ tagClass: 'fadeIn' }), 40);
-    setTimeout(() => this.setState({tagClass: ''}), tagDuration - animationDuration);
+    setTimeout(() => this.setState({tagClass: ''}), tagDuration - animationDuration + 40);
   }
 }
