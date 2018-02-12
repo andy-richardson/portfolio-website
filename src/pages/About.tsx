@@ -123,9 +123,9 @@ export default class Hero extends Component<Props, State> {
           </HeaderText>
         </HeaderContainer>
 
-
         <TextContainer>
-          <TextItem className={(this.state.text1) ? 'animate-in' : ''}>I'm passionate about collaborating with teams to design, architect, and implement
+          <TextItem className={(this.state.text1) ? 'animate-in' : ''}>
+          I'm passionate about collaborating with teams to design, architect, and implement
           great products</TextItem>
 
           <TextItem className={(this.state.text2) ? 'animate-in' : ''}>
@@ -142,7 +142,7 @@ export default class Hero extends Component<Props, State> {
         </TextContainer>
 
         <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
-          <Link to="/about">
+          <Link to="/projects">
             <Icon type="arrow-right" />
           </Link>
         </ButtonContainer>

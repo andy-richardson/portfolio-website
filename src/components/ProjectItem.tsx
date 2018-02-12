@@ -1,5 +1,6 @@
-import { Avatar, Card, Icon, Row, Tag } from 'antd';
+import { Avatar, Card, Icon, Tag } from 'antd';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import GithubLogo from 'images/github-logo.png';
 
@@ -13,43 +14,60 @@ interface Props {
 }
 type State = any;
 
-const styles: CSSMap = {
-  card: {
-    display: 'flex',
-    marginBottom: 20,
-    minWidth: '100%',
-  },
-  downloadText: {
-    fontSize: 14,
-    lineHeight: 1,
-    marginBottom: 2,
-    marginLeft: 5,
-  },
-  downloads: {
-    bottom: 0,
-    fontSize: 20,
-    left: 0,
-    padding: 'inherit',
-    position: 'absolute',
-  },
-  header: {
-    fontSize: 20,
-  },
-  img: {
-    float: 'right',
-    width: 25,
-  },
-  row: {
-    marginBottom: 35,
-    minWidth: '100%',
-  },
-  tags: {
-    bottom: 0,
-    padding: 'inherit',
-    position: 'absolute',
-    right: 0,
-  },
-};
+const ImageLink = styled.a`
+`;
+
+const Image = styled.img`
+  float: right;
+  width: 25px;
+`;
+
+const Row = styled.div`
+  margin-bottom: 35px;
+  min-width: 100%;
+`;
+
+const BottomRow = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+  position: relative;
+`;
+
+const DownloadsContainer = styled.div`
+  display: inline-flex;
+`;
+
+const DownloadsText = styled.p`
+  font-size: 14px;
+  line-height: 1px;
+  margin-bottom: 2px;
+  margin-left: 5px;
+  display: inline;
+`;
+
+const TagsContainer = styled.div`
+  float: right;
+  display: flex;
+  justify-content: end;
+`;
+
+const Header = styled.h3`
+  font-size: 20px;
+  margin-right: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const Description = styled.p`
+  @media screen and (max-width: 1023px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
 
 const tagColors: any = {
   atom: 'green',
@@ -66,19 +84,21 @@ export default class ProjectItem extends Component<Props, State> {
 
   public render() {
     return (
-      <Card hoverable={true} style={styles.card} onClick={this.handleCardClick}>
-        <Row style={styles.row}>
-          <a href={this.props.repo} target="_blank" onClick={this.handleRepoClick}>
-            <img style={styles.img} src={GithubLogo} />
-          </a>
-          <span>
-            <h3 style={styles.header}>{this.props.title}</h3>
-            <p>{this.props.description}</p>
-          </span>
+      <Card hoverable={true} style={{minWidth: '100%'}} onClick={this.handleCardClick}>
+        <Row>
+          <ImageLink href={this.props.repo} target="_blank" onClick={this.handleRepoClick}>
+            <Image src={GithubLogo} />
+          </ImageLink>
+          <Header>{this.props.title}</Header>
+          <Description>{this.props.description}</Description>
         </Row>
 
-        {this.getDownloads()}
-        {this.getTags()}
+        <BottomRow>
+          <DownloadsContainer>
+            {this.getDownloads()}
+          </DownloadsContainer>
+          {this.getTags()}
+        </BottomRow>
       </Card>
     );
   }
@@ -93,9 +113,9 @@ export default class ProjectItem extends Component<Props, State> {
     });
 
     return (
-      <Row type="flex" justify="end" style={styles.tags}>
+      <TagsContainer>
         {tags}
-      </Row>
+      </TagsContainer>
     );
   }
 
@@ -107,10 +127,10 @@ export default class ProjectItem extends Component<Props, State> {
   private getDownloads(): JSX.Element {
     if (this.props.downloads > 0) {
       return (
-        <Row type="flex" align="bottom" style={styles.downloads}>
+        <span>
           <Icon type="cloud-download-o" />
-          <p style={styles.downloadText}>{this.props.downloads}</p>
-        </Row>
+          <DownloadsText>{this.props.downloads}</DownloadsText>
+        </span>
       );
     }
   }
