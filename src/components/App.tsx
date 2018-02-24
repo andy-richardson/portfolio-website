@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from 'pages/About';
-import Skills from 'pages/Skills';
+import Github from 'pages/Github';
 import Hero from 'pages/Hero';
 import Projects from 'pages/Projects';
+import Skills from 'pages/Skills';
 const { Header, Sider, Content } = Layout;
 
 type Props = any;
@@ -37,6 +38,7 @@ export default class App extends Component<Props, State> {
           <Route path="/about" component={About}/>
           <Route path="/projects" component={Projects}/>
           <Route path="/skills" component={Skills}/>
+          <Route path="/github" component={Github}/>
         </Layout>
       </Router>
     );
