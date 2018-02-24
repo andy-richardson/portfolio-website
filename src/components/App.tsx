@@ -2,8 +2,9 @@ import { Icon, Layout, Menu } from 'antd';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Hero from 'pages/Hero';
 import About from 'pages/About';
+import Skills from 'pages/Skills';
+import Hero from 'pages/Hero';
 import Projects from 'pages/Projects';
 const { Header, Sider, Content } = Layout;
 
@@ -35,6 +36,7 @@ export default class App extends Component<Props, State> {
           <Route exact={true} path="/" component={Hero}/>
           <Route path="/about" component={About}/>
           <Route path="/projects" component={Projects}/>
+          <Route path="/skills" component={Skills}/>
         </Layout>
       </Router>
     );

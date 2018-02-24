@@ -1,6 +1,7 @@
 import { Col, Row } from 'antd';
 import React, { Component } from 'react';
 import ProjectItem from './ProjectItem';
+import styled from 'styled-components';
 
 type Props = any;
 type State = any;
@@ -28,10 +29,15 @@ const projects: any[] = [
   },
 ];
 
-const headerStyle: React.CSSProperties = {
-  fontSize: 22,
-  fontWeight: 600,
-};
+const HeaderText = styled.h1`
+  font-size: 21px;
+  color: #fff;
+`;
+
+const Container = styled.div`
+  background-color: #1890FF;
+  padding: 20px;
+`;
 
 export default class Projects extends Component<Props, State> {
   public render() {
@@ -51,12 +57,10 @@ export default class Projects extends Component<Props, State> {
     });
 
     return (
-      <Row>
-        <h3 style={headerStyle}>Public Projects</h3>
-        <Row gutter={16} type="flex">
-          {projectItems}
-        </Row>
-      </Row>
+      <Container>
+        <HeaderText>Here are some of my recent projects</HeaderText>
+        {projectItems}
+      </Container>
     );
   }
 }

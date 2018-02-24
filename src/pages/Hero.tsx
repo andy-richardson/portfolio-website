@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FlexContainer, FlexItem } from '../components/Flex';
+import { HeaderContainer, HeaderText } from '../components/Header';
 
 type Props = any;
 type State = any;
@@ -31,48 +33,17 @@ const tags: string[] = [
 const tagDuration = 4000;
 const animationDuration = 900;
 
-const FlexContainer = styled.div`
-  background: #fff;
-  display: flex;
-  padding: 20px 30%;
+//
+// .ant-tag {
+//   margin-top: 20px;
+//   opacity: 0;
+//   transition: opacity 900ms ease-in-out;
+//
+//   &.fadeIn {
+//     opacity: 1;
+//   }
+// }
 
-  @media screen and (max-width: 1023px) {
-    padding: 60px;
-    flex-direction: column;
-  }
-
-  .slideFromRight {
-    transform: translateX(100vw);
-  }
-
-  .ant-tag {
-    margin-top: 20px;
-    opacity: 0;
-    transition: opacity 900ms ease-in-out;
-
-    &.fadeIn {
-      opacity: 1;
-    }
-  }
-`;
-
-const FlexItem = styled.div`
-  display: flex;
-  flex: 50%;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-
-  @media screen and (min-width: 1024px) {
-    min-height: -webkit-fill-available;
-  }
-`;
-
-const HeaderContainer = FlexItem.extend`
-  @media screen and (max-width: 1023px) {
-    justify-content: flex-end;
-  }
-`;
 
 const ButtonContainer = FlexItem.extend`
   text-align: center;
@@ -83,15 +54,6 @@ const ButtonContainer = FlexItem.extend`
   a {
     color: #444;
   }
-
-  &.animate-in {
-    transform: translateX(0vw);
-  }
-`;
-
-const HeaderText = styled.h1`
-  transition: transform 300ms ease-out;
-  transform: translateX(100vw);
 
   &.animate-in {
     transform: translateX(0vw);

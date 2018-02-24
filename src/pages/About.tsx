@@ -2,44 +2,11 @@ import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FlexContainer, FlexItem } from '../components/Flex';
+import { HeaderContainer, HeaderText } from '../components/Header';
 
 type Props = any;
 type State = any;
-
-const FlexContainer = styled.div`
-  background: #fff;
-  display: flex;
-  padding: 20px 25%;
-
-  @media screen and (max-width: 1023px) {
-    padding: 30px;
-    flex-direction: column;
-  }
-
-  .slideFromRight {
-    transform: translateX(100vw);
-  }
-`;
-
-const FlexItem = styled.div`
-  padding: 5%;
-  display: flex;
-  flex: 50%;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-
-  @media screen and (min-width: 1024px) {
-    min-height: 100%;
-  }
-`;
-
-const HeaderContainer = FlexItem.extend`
-  @media screen and (max-width: 1023px) {
-    flex: auto;
-    justify-content: flex-end;
-  }
-`;
 
 const TextContainer = FlexItem.extend`
 `;
@@ -66,7 +33,7 @@ const ButtonContainer = FlexItem.extend`
   text-align: center;
   font-size: 24px;
   position: absolute;
-  right: 15%;
+  right: 5%;
   transition: transform 300ms ease-out;
   transform: translateY(100vh);
 
@@ -85,17 +52,6 @@ const ButtonContainer = FlexItem.extend`
   }
 `;
 
-const HeaderText = styled.h1`
-  transition: transform 500ms ease-out;
-  transform: translateY(100vh);
-
-  &.animate-in {
-    transform: translateY(0);
-  }
-`;
-
-const SubheaderText = styled.h2`
-`;
 
 export default class Hero extends Component<Props, State> {
   public state: State = {

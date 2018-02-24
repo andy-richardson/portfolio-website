@@ -2,6 +2,8 @@ import { Col, Icon, Row } from 'antd';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FlexContainer, FlexItem } from '../components/Flex';
+import { HeaderContainer, HeaderText } from '../components/Header';
 import ProjectItem from '../components/ProjectItem';
 
 type Props = any;
@@ -29,41 +31,6 @@ const projects: any[] = [
     title: 'Portfolio Website',
   },
 ];
-
-const FlexContainer = styled.div`
-  background: #fff;
-  display: flex;
-  padding: 20px 20%;
-
-  @media screen and (max-width: 1023px) {
-    padding: 30px;
-    flex-direction: column;
-  }
-
-  .slideFromRight {
-    transform: translateX(100vw);
-  }
-`;
-
-const FlexItem = styled.div`
-  padding: 5%;
-  display: flex;
-  flex: 50%;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-
-  @media screen and (min-width: 1024px) {
-    min-height: 100%;
-  }
-`;
-
-const HeaderContainer = FlexItem.extend`
-  @media screen and (max-width: 1023px) {
-    flex: auto;
-    justify-content: flex-end;
-  }
-`;
 
 const ProjectsContainer = FlexItem.extend`
   display: flex;
@@ -112,15 +79,6 @@ const ButtonContainer = FlexItem.extend`
   }
 `;
 
-const HeaderText = styled.h1`
-  transition: transform 500ms ease-out;
-  transform: translateY(100vh);
-
-  &.animate-in {
-    transform: translateY(0);
-  }
-`;
-
 export default class Projects extends Component<Props, State> {
   public state: State = {
     buttonIn: false,
@@ -132,10 +90,10 @@ export default class Projects extends Component<Props, State> {
 
   public componentDidMount() {
     setTimeout(() => this.setState({headerIn: true}), 200);
-    setTimeout(() => this.setState({project1: true}), 400);
-    setTimeout(() => this.setState({project2: true}), 1000);
-    setTimeout(() => this.setState({project3: true}), 1600);
-    setTimeout(() => this.setState({buttonIn: true}), 2400);
+    setTimeout(() => this.setState({project1: true}), 600);
+    setTimeout(() => this.setState({project2: true}), 1200);
+    setTimeout(() => this.setState({project3: true}), 1800);
+    setTimeout(() => this.setState({buttonIn: true}), 2600);
   }
 
   public render() {
@@ -143,7 +101,7 @@ export default class Projects extends Component<Props, State> {
       return (
         <ProjectItemContainer
           key={i}
-          className={(this.state[`project${i+1}`]) ? 'animate-in' : ''}
+          className={(this.state[`project${i + 1}`]) ? 'animate-in' : ''}
         >
           <ProjectItem
             title={item.title}
