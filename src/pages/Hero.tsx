@@ -1,6 +1,7 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText, SubheaderText } from 'components/Header';
+import { Sizes } from 'config/Style';
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
@@ -44,21 +45,19 @@ export default class Hero extends Component<Props, State> {
   public render(): JSX.Element {
     return (
       <FlexContainer className="flexContainer">
-        <HeaderContainer>
+        <HeaderContainerResponsive>
           <HeaderText className={this.state.classes.header.join(' ')}>Hi there.</HeaderText>
           <SubheaderText className={this.state.classes.subHeader.join(' ')}>
             My name is Andy. I am a...
           </SubheaderText>
-          <div style={{maxWidth: 'min-content'}} className={this.state.classes.tag.join(' ')}>
-            <Tag
-              color={this.state.tag.color}
-            >
+          <TagContainer className={this.state.classes.tag.join(' ')}>
+            <Tag color={this.state.tag.color}>
               {this.state.tag.text}
             </Tag>
-          </div>
-        </HeaderContainer>
+          </TagContainer>
+        </HeaderContainerResponsive>
 
-        <ButtonContainer className={this.state.classes.tag.join(' ')}>
+        <ButtonContainer className={this.state.classes.button.join(' ')}>
           <Link to="/about">
             <Icon type="arrow-right" />
           </Link>
@@ -153,4 +152,23 @@ const ButtonContainer = FlexItem.extend`
   a {
     color: #444;
   }
+
+  @media (max-width: ${Sizes.maxM}) {
+    bottom: 20px;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+  }
+`;
+
+const HeaderContainerResponsive = HeaderContainer.extend`
+  @media (max-width: ${Sizes.maxM}) {
+    height: 100vh;
+    justify-content: center;
+  }
+`;
+
+const TagContainer = styled.div`
+  margin-top: 10px;
+  max-width: min-content;
 `;
