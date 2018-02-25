@@ -1,13 +1,129 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
+import { FlexContainer, FlexItem } from 'components/Flex';
+import { HeaderContainer, HeaderText, SubheaderText } from 'components/Header';
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexContainer, FlexItem } from '../components/Flex';
-import { HeaderContainer, HeaderText } from '../components/Header';
 
 type Props = any;
-type State = any;
+interface State {
+  classes: {
+    button: string[];
+    header: string[];
+    subHeader: string[];
+    tag: string[];
+  };
+  tag: {
+    color: string;
+    text: string;
+  };
+}
+
+export default class Hero extends Component<Props, State> {
+  public state: State = {
+    classes: {
+      button: ['fade-in'],
+      header: ['fade-in'],
+      subHeader: ['fade-in'],
+      tag: ['fade-in'],
+    },
+    tag: {
+      color: tagColors[0],
+      text: tags[0],
+    },
+  };
+  private tagDuration = 4000;
+  private animationDuration = 800;
+
+  public componentDidMount(): void {
+    this.addElements();
+    this.animateTags();
+  }
+
+  public render(): JSX.Element {
+    return (
+      <FlexContainer className="flexContainer">
+        <HeaderContainer>
+          <HeaderText className={this.state.classes.header.join(' ')}>Hi there.</HeaderText>
+          <SubheaderText className={this.state.classes.subHeader.join(' ')}>
+            My name is Andy. I am a...
+          </SubheaderText>
+          <div style={{maxWidth: 'min-content'}} className={this.state.classes.tag.join(' ')}>
+            <Tag
+              color={this.state.tag.color}
+            >
+              {this.state.tag.text}
+            </Tag>
+          </div>
+        </HeaderContainer>
+
+        <ButtonContainer className={this.state.classes.tag.join(' ')}>
+          <Link to="/about">
+            <Icon type="arrow-right" />
+          </Link>
+        </ButtonContainer>
+      </FlexContainer>
+    );
+  }
+
+  private animateTags(): void {
+    let i = 1;
+    setInterval(() => this.animateTag(i++), this.tagDuration + (this.animationDuration * 2));
+  }
+
+  private animateTag(index: number): void {
+    this.showTag();
+    setTimeout(() => this.hideTag(), this.tagDuration + this.animationDuration);
+    setTimeout(() => this.changeTag(index), this.tagDuration + (this.animationDuration) * 2);
+  }
+
+  private showTag(): void {
+    const classes = {...this.state.classes};
+    classes.tag.push('active');
+    this.setState({ classes });
+  }
+
+  private hideTag(): void {
+    const classes = {...this.state.classes};
+    classes.tag.pop();
+
+    this.setState({
+      classes,
+    });
+  }
+
+  private changeTag(index: number) {
+    this.setState({
+      tag: {
+        color: tagColors[++index % tagColors.length],
+        text: tags[++index % tags.length],
+      },
+    });
+  }
+
+  private addElements(): void {
+    const animations = {
+      button: 900,
+      header: 200,
+      subHeader: 400,
+      tag: 600,
+    };
+
+    Object.keys(animations)
+    .forEach((el: any) =>
+      setTimeout(() => {
+        if (el === 'tag') {
+          return this.animateTag(0);
+        }
+
+        const classes: any = {...this.state.classes};
+        classes[el].push('active');
+        this.setState({ classes });
+      }, animations[el]),
+    );
+  }
+}
 
 const tagColors: string[] = [
   'green',
@@ -30,97 +146,11 @@ const tags: string[] = [
   'react developer',
 ];
 
-const tagDuration = 4000;
-const animationDuration = 900;
-
-//
-// .ant-tag {
-//   margin-top: 20px;
-//   opacity: 0;
-//   transition: opacity 900ms ease-in-out;
-//
-//   &.fadeIn {
-//     opacity: 1;
-//   }
-// }
-
-
 const ButtonContainer = FlexItem.extend`
   text-align: center;
   font-size: 24px;
-  transition: transform 300ms ease-out;
-  transform: translateX(100vw);
 
   a {
     color: #444;
   }
-
-  &.animate-in {
-    transform: translateX(0vw);
-  }
 `;
-
-const SubheaderText = styled.h2`
-  transition: transform 300ms ease-out;
-  transform: translateX(100vw);
-
-  &.animate-in {
-    transform: translateX(0vw);
-  }
-`;
-
-export default class Hero extends Component<Props, State> {
-  public state: State = {
-    buttonIn: false,
-    headerIn: false,
-    subheaderIn: false,
-  };
-
-  public componentDidMount() {
-    setTimeout(() => this.setState({headerIn: true}), 200);
-    setTimeout(() => this.setState({subheaderIn: true}), 300);
-    setTimeout(() => this.setState({buttonIn: true}), 400);
-    this.animateTags();
-  }
-
-  public render() {
-    return (
-      <FlexContainer className="flexContainer">
-        <HeaderContainer>
-          <HeaderText className={(this.state.headerIn) ? 'animate-in' : ''}>
-            Hi there.
-          </HeaderText>
-          <SubheaderText className={(this.state.subheaderIn) ? 'animate-in' : ''}>
-            My name is Andy. I am a...
-            <div>
-              <Tag color={this.state.tagColor} className={this.state.tagClass}>
-                {this.state.tagText}
-              </Tag>
-            </div>
-          </SubheaderText>
-        </HeaderContainer>
-
-        <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
-          <Link to="/about">
-            <Icon type="arrow-right" />
-          </Link>
-        </ButtonContainer>
-      </FlexContainer>
-    );
-  }
-
-  private animateTags() {
-    let i = 0;
-    this.showTag(i++);
-    setInterval(() => this.showTag(i++), tagDuration);
-  }
-
-  private showTag(index: number) {
-    this.setState({
-      tagText: tags[index % tags.length],
-      tagColor: tagColors[index % tagColors.length],
-    });
-    setTimeout(() => this.setState({ tagClass: 'fadeIn' }), 40);
-    setTimeout(() => this.setState({tagClass: ''}), tagDuration - animationDuration + 40);
-  }
-}

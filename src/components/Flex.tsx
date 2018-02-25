@@ -1,3 +1,4 @@
+import { Sizes } from 'config/Style';
 import styled from 'styled-components';
 
 export const FlexContainer = styled.div`
@@ -6,7 +7,7 @@ export const FlexContainer = styled.div`
   padding: 20px 20%;
 
   @media screen and (max-width: 1023px) {
-    padding: 30px;
+    padding: 10px 30px;
     flex-direction: column;
   }
 
@@ -25,5 +26,9 @@ export const FlexItem = styled.div`
 
   @media screen and (min-width: 1024px) {
     min-height: 100%;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 20px 0;
   }
 `;

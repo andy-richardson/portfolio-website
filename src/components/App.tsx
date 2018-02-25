@@ -1,38 +1,25 @@
 import { Icon, Layout, Menu } from 'antd';
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import 'components/Animation';
 import About from 'pages/About';
 import Github from 'pages/Github';
 import Hero from 'pages/Hero';
 import Projects from 'pages/Projects';
 import Skills from 'pages/Skills';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 
 type Props = any;
 type State = any;
 
-const layoutStyle: React.CSSProperties = {
-  fontFamily: 'Open Sans',
-};
-
-const contentStyle: React.CSSProperties = {
-  backgroundColor: '#fff',
-  padding: 24,
-};
-
 export default class App extends Component<Props, State> {
-  public state: State = {
-    collapsed: false,
-  };
-
   constructor(props: any) {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
-      <Router location={this.props.location}>
+      <Router>
         <Layout style={layoutStyle}>
           <Route exact={true} path="/" component={Hero}/>
           <Route path="/about" component={About}/>
@@ -43,10 +30,13 @@ export default class App extends Component<Props, State> {
       </Router>
     );
   }
-
-  private toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  }
 }
+
+const layoutStyle: React.CSSProperties = {
+  fontFamily: 'Open Sans',
+};
+
+const contentStyle: React.CSSProperties = {
+  backgroundColor: '#fff',
+  padding: 24,
+};

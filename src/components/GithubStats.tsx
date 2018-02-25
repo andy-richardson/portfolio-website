@@ -1,30 +1,37 @@
 import { Avatar, Card, Icon, Tag } from 'antd';
+import { FlexContainer, FlexItem } from 'components/Flex';
+import GithubStat from 'components/GithubStat';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { FlexContainer, FlexItem } from './Flex';
-import GithubStat from './GithubStat';
 
 interface Props {
-  test?: any;
+  username: string;
+}
+interface State {
+  contributions: number | string;
+  followers: number | string;
+  repos: number | string;
 }
 
-interface State {
-  test?: any
+export default class GithubStats extends Component<Props, State> {
+  public state: State = {
+    contributions: '..',
+    followers: '..',
+    repos: '..',
+  };
+
+  public render(): JSX.Element {
+    return (
+      <StatContainer>
+        <GithubStat title="Public Repositories" data={this.state.repos}/>
+        <GithubStat title="Contributions This Year" data={this.state.contributions}/>
+        <GithubStat title="Followers" data={this.state.followers}/>
+      </StatContainer>
+    );
+  }
 }
 
 const StatContainer = FlexItem.extend`
   align-items: center;
   flex-direction: row;
 `;
-
-export default class GithubStats extends Component<Props, State> {
-  public render() {
-    return (
-      <StatContainer>
-        <GithubStat title="Public Repositories" data="123"/>
-        <GithubStat title="Contributions This Year" data="345"/>
-        <GithubStat title="Followers" data=".."/>
-      </StatContainer>
-    );
-  }
-}

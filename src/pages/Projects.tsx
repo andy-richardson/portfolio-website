@@ -1,10 +1,10 @@
 import { Col, Icon, Row } from 'antd';
+import { FlexContainer, FlexItem } from 'components/Flex';
+import { HeaderContainer, HeaderText } from 'components/Header';
+import ProjectItem from 'components/ProjectItem';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexContainer, FlexItem } from '../components/Flex';
-import { HeaderContainer, HeaderText } from '../components/Header';
-import ProjectItem from '../components/ProjectItem';
 
 type Props = any;
 type State = any;
@@ -31,6 +31,64 @@ const projects: any[] = [
     title: 'Portfolio Website',
   },
 ];
+
+export default class Projects extends Component<Props, State> {
+  public state: State = {
+    buttonIn: false,
+    headerIn: false,
+    project1: false,
+    project2: false,
+    project3: false,
+  };
+
+  public componentDidMount(): void {
+    setTimeout(() => this.setState({headerIn: true}), 200);
+    setTimeout(() => this.setState({project1: true}), 600);
+    setTimeout(() => this.setState({project2: true}), 1200);
+    setTimeout(() => this.setState({project3: true}), 1800);
+    setTimeout(() => this.setState({buttonIn: true}), 2600);
+  }
+
+  public render(): JSX.Element {
+    const projectItems = projects.map((item: any, i: number) => {
+      return (
+        <ProjectItemContainer
+          key={i}
+          className={(this.state[`project${i + 1}`]) ? 'animate-in' : ''}
+        >
+          <ProjectItem
+            title={item.title}
+            description={item.description}
+            tags={item.tags}
+            repo={item.repo}
+            link={item.link}
+            downloads={item.downloads}
+          />
+        </ProjectItemContainer>
+      );
+    });
+
+    return (
+      <FlexContainer>
+        <HeaderContainer>
+          <HeaderText className={(this.state.headerIn) ? 'animate-in' : ''}>
+            Here are my recent projects
+          </HeaderText>
+        </HeaderContainer>
+
+        <ProjectsContainer>
+          {projectItems}
+        </ProjectsContainer>
+
+        <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
+          <Link to="/projects">
+            <Icon type="arrow-right" />
+          </Link>
+        </ButtonContainer>
+      </FlexContainer>
+    );
+  }
+}
 
 const ProjectsContainer = FlexItem.extend`
   display: flex;
@@ -78,61 +136,3 @@ const ButtonContainer = FlexItem.extend`
     max-height: min-content;
   }
 `;
-
-export default class Projects extends Component<Props, State> {
-  public state: State = {
-    buttonIn: false,
-    headerIn: false,
-    project1: false,
-    project2: false,
-    project3: false,
-  };
-
-  public componentDidMount() {
-    setTimeout(() => this.setState({headerIn: true}), 200);
-    setTimeout(() => this.setState({project1: true}), 600);
-    setTimeout(() => this.setState({project2: true}), 1200);
-    setTimeout(() => this.setState({project3: true}), 1800);
-    setTimeout(() => this.setState({buttonIn: true}), 2600);
-  }
-
-  public render() {
-    const projectItems = projects.map((item: any, i: number) => {
-      return (
-        <ProjectItemContainer
-          key={i}
-          className={(this.state[`project${i + 1}`]) ? 'animate-in' : ''}
-        >
-          <ProjectItem
-            title={item.title}
-            description={item.description}
-            tags={item.tags}
-            repo={item.repo}
-            link={item.link}
-            downloads={item.downloads}
-          />
-        </ProjectItemContainer>
-      );
-    });
-
-    return (
-      <FlexContainer>
-        <HeaderContainer>
-          <HeaderText className={(this.state.headerIn) ? 'animate-in' : ''}>
-            Here are my recent projects
-          </HeaderText>
-        </HeaderContainer>
-
-        <ProjectsContainer>
-          {projectItems}
-        </ProjectsContainer>
-
-        <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
-          <Link to="/projects">
-            <Icon type="arrow-right" />
-          </Link>
-        </ButtonContainer>
-      </FlexContainer>
-    );
-  }
-}

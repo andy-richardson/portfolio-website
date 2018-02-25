@@ -1,8 +1,7 @@
 import { Avatar, Card, Icon, Tag } from 'antd';
+import GithubLogo from 'images/github-logo.png';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
-import GithubLogo from 'images/github-logo.png';
 
 interface Props {
   title: string;
@@ -13,6 +12,74 @@ interface Props {
   downloads?: number;
 }
 type State = any;
+
+export default class ProjectItem extends Component<Props, State> {
+  constructor(props: any) {
+    super(props);
+    this.handleCardClick = this.handleCardClick.bind(this);
+  }
+
+  public render(): JSX.Element {
+    return (
+      <Card hoverable={true} style={{minWidth: '100%'}} onClick={this.handleCardClick}>
+        <Row>
+          <ImageLink href={this.props.repo} target="_blank" onClick={this.handleRepoClick}>
+            <Image src={GithubLogo} />
+          </ImageLink>
+          <Header>{this.props.title}</Header>
+          <Description>{this.props.description}</Description>
+        </Row>
+
+        <BottomRow>
+          <DownloadsContainer>
+            {this.getDownloads()}
+          </DownloadsContainer>
+          {this.getTags()}
+        </BottomRow>
+      </Card>
+    );
+  }
+
+  private getTags(): JSX.Element {
+    const tags = this.props.tags.map((tag: string, i: number) => {
+      return (
+        <Tag color={this.getTagColor(tag)} key={i}>
+          {tag}
+        </Tag>
+      );
+    });
+
+    return (
+      <TagsContainer>
+        {tags}
+      </TagsContainer>
+    );
+  }
+
+  private getTagColor(label: string): string {
+    const id = label.replace(/\s+/g, '').toLowerCase();
+    return tagColors[id];
+  }
+
+  private getDownloads(): JSX.Element {
+    if (this.props.downloads > 0) {
+      return (
+        <span>
+          <Icon type="cloud-download-o" />
+          <DownloadsText>{this.props.downloads}</DownloadsText>
+        </span>
+      );
+    }
+  }
+
+  private handleCardClick(): void {
+    window.open(this.props.link, '_blank');
+  }
+
+  private handleRepoClick(e: any): void {
+    e.stopPropagation();
+  }
+}
 
 const ImageLink = styled.a`
 `;
@@ -75,71 +142,3 @@ const tagColors: any = {
   opensource: 'gold',
   react: 'blue',
 };
-
-export default class ProjectItem extends Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-    this.handleCardClick = this.handleCardClick.bind(this);
-  }
-
-  public render() {
-    return (
-      <Card hoverable={true} style={{minWidth: '100%'}} onClick={this.handleCardClick}>
-        <Row>
-          <ImageLink href={this.props.repo} target="_blank" onClick={this.handleRepoClick}>
-            <Image src={GithubLogo} />
-          </ImageLink>
-          <Header>{this.props.title}</Header>
-          <Description>{this.props.description}</Description>
-        </Row>
-
-        <BottomRow>
-          <DownloadsContainer>
-            {this.getDownloads()}
-          </DownloadsContainer>
-          {this.getTags()}
-        </BottomRow>
-      </Card>
-    );
-  }
-
-  private getTags(): JSX.Element {
-    const tags = this.props.tags.map((tag: string, i: number) => {
-      return (
-        <Tag color={this.getTagColor(tag)} key={i}>
-          {tag}
-        </Tag>
-      );
-    });
-
-    return (
-      <TagsContainer>
-        {tags}
-      </TagsContainer>
-    );
-  }
-
-  private getTagColor(label: string): string {
-    const id = label.replace(/\s+/g, '').toLowerCase();
-    return tagColors[id];
-  }
-
-  private getDownloads(): JSX.Element {
-    if (this.props.downloads > 0) {
-      return (
-        <span>
-          <Icon type="cloud-download-o" />
-          <DownloadsText>{this.props.downloads}</DownloadsText>
-        </span>
-      );
-    }
-  }
-
-  private handleCardClick(): void {
-    window.open(this.props.link, '_blank');
-  }
-
-  private handleRepoClick(e: any): void {
-    e.stopPropagation();
-  }
-}

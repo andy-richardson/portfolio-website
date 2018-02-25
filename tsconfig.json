@@ -1,15 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "commonjs",
     "target": "es5",
     "noImplicitAny": true,
+    "paths": {
+      "config/*": [ "./src/config/*" ],
+      "components/*": [ "./src/components/*" ],
+      "images/*": [ "./assets/images/*" ],
+      "pages/*": [ "./src/pages/*" ]
+    },
     "sourceMap": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/typings"
-    ],
+    ]
   },
   "include": [
     "src/**/*"

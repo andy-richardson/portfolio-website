@@ -1,7 +1,7 @@
 import { Icon, Rate } from 'antd';
+import { FlexContainer, FlexItem } from 'components/Flex';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { FlexContainer, FlexItem } from '../components/Flex';
 
 type Props = any;
 type State = any;
@@ -38,7 +38,7 @@ export default class Skills extends Component<Props, State> {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <FlexContainer>
         <HeaderContainer>

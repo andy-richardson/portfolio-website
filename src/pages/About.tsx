@@ -1,9 +1,9 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
+import { FlexContainer, FlexItem } from 'components/Flex';
+import { HeaderContainer, HeaderText } from 'components/Header';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexContainer, FlexItem } from '../components/Flex';
-import { HeaderContainer, HeaderText } from '../components/Header';
 
 type Props = any;
 type State = any;
@@ -52,7 +52,6 @@ const ButtonContainer = FlexItem.extend`
   }
 `;
 
-
 export default class Hero extends Component<Props, State> {
   public state: State = {
     buttonIn: false,
@@ -62,7 +61,7 @@ export default class Hero extends Component<Props, State> {
     text3: false,
   };
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     setTimeout(() => this.setState({headerIn: true}), 200);
     setTimeout(() => this.setState({text1: true}), 400);
     setTimeout(() => this.setState({text2: true}), 2000);
@@ -70,7 +69,7 @@ export default class Hero extends Component<Props, State> {
     setTimeout(() => this.setState({buttonIn: true}), 5200);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <FlexContainer>
         <HeaderContainer>
@@ -99,7 +98,7 @@ export default class Hero extends Component<Props, State> {
 
         <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
           <Link to="/projects">
-            <Icon type="arrow-right" />
+            <Icon type="arrow-right"/>
           </Link>
         </ButtonContainer>
       </FlexContainer>

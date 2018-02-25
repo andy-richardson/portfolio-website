@@ -2,6 +2,8 @@
   "extends": ["tslint-react", "tslint:latest"],
   "rules": {
     "quotemark": [true, "single", "jsx-double"],
-    "interface-name": [true, "never-prefix"]
+    "interface-name": [true, "never-prefix"],
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false
   }
 }

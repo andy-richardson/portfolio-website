@@ -7,6 +7,7 @@ const Config: webpack.Configuration = {
     publicPath: '/',
     historyApiFallback: true,
   },
+  devtool: 'source-map',
   entry: [
     './src/index.tsx',
     './src/index.scss',
@@ -55,9 +56,10 @@ const Config: webpack.Configuration = {
   ],
   resolve: {
     alias: {
+      components: `${__dirname}/src/components`,
       images: `${__dirname}/assets/images`,
       pages: `${__dirname}/src/pages`,
-      components: `${__dirname}/src/components`,
+      config: `${__dirname}/src/config`,
     },
     extensions: ['.ts', '.tsx', '.js', '.png'],
   },

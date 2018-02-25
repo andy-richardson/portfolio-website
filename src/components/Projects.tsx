@@ -1,10 +1,47 @@
 import { Col, Row } from 'antd';
+import ProjectItem from 'components/ProjectItem';
 import React, { Component } from 'react';
-import ProjectItem from './ProjectItem';
 import styled from 'styled-components';
 
+interface Project {
+  description: string;
+  downloads: number;
+  link: string;
+  repo: string;
+  tags: string[];
+  title: string;
+}
+
 type Props = any;
-type State = any;
+interface State {
+  projects: Project[];
+}
+
+export default class Projects extends Component<Props, State> {
+  public render(): JSX.Element {
+    const projectItems = projects.map((item: any, i: number) => {
+      return (
+        <Col xs={24} lg={8} style={{display: 'flex'}} key={i}>
+          <ProjectItem
+            title={item.title}
+            description={item.description}
+            tags={item.tags}
+            repo={item.repo}
+            link={item.link}
+            downloads={item.downloads}
+          />
+        </Col>
+      );
+    });
+
+    return (
+      <Container>
+        <HeaderText>Here are some of my recent projects</HeaderText>
+        {projectItems}
+      </Container>
+    );
+  }
+}
 
 const projects: any[] = [
   {
@@ -38,29 +75,3 @@ const Container = styled.div`
   background-color: #1890FF;
   padding: 20px;
 `;
-
-export default class Projects extends Component<Props, State> {
-  public render() {
-    const projectItems = projects.map((item: any, i: number) => {
-      return (
-        <Col xs={24} lg={8} style={{display: 'flex'}} key={i}>
-          <ProjectItem
-            title={item.title}
-            description={item.description}
-            tags={item.tags}
-            repo={item.repo}
-            link={item.link}
-            downloads={item.downloads}
-          />
-        </Col>
-      );
-    });
-
-    return (
-      <Container>
-        <HeaderText>Here are some of my recent projects</HeaderText>
-        {projectItems}
-      </Container>
-    );
-  }
-}
