@@ -92,7 +92,6 @@ export default class Projects extends Component<Props, State> {
 
 const ProjectsContainer = FlexItem.extend`
   display: flex;
-  flex-direction: column;
 
   & > div {
     min-width: 100%;

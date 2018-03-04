@@ -7,6 +7,7 @@ import Projects from 'pages/Projects';
 import Skills from 'pages/Skills';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { injectGlobal } from 'styled-components';
 const { Header, Sider, Content } = Layout;
 
 type Props = any;
@@ -20,7 +21,7 @@ export default class App extends Component<Props, State> {
   public render(): JSX.Element {
     return (
       <Router>
-        <Layout style={layoutStyle}>
+        <Layout>
           <Route exact={true} path="/" component={Hero}/>
           <Route path="/about" component={About}/>
           <Route path="/projects" component={Projects}/>
@@ -32,11 +33,10 @@ export default class App extends Component<Props, State> {
   }
 }
 
-const layoutStyle: React.CSSProperties = {
-  fontFamily: 'Open Sans',
-};
-
-const contentStyle: React.CSSProperties = {
-  backgroundColor: '#fff',
-  padding: 24,
-};
+injectGlobal`
+  body {
+    font-family: 'Open Sans', sans-serif;
+    max-height: 100vh;
+    max-width: 100vw;
+  }
+`;

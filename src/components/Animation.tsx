@@ -2,16 +2,17 @@ import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   .slide-in-left {
-    transform: translateX(-100vw);
-  }
+    transition: transform 600ms ease;
+    transform: translateX(100vw);
 
-  .slide-in-left-enter-active {
-    transform: translateX(0);
+    &.active {
+      transform: translateX(0);
+    }
   }
 
   .fade-in {
     opacity: 0;
-    transition: opacity 600ms ease-in;
+    transition: opacity 600ms ease;
 
     &.active {
       opacity: 1;

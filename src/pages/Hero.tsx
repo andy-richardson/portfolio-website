@@ -36,17 +36,25 @@ export default class Hero extends Component<Props, State> {
   };
   private tagDuration = 4000;
   private animationDuration = 800;
+  private animationInterval: NodeJS.Timer;
 
   public componentDidMount(): void {
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 500);
     this.addElements();
     this.animateTags();
+  }
+
+  public componentWillUnmount(): void {
+    clearInterval(this.animationInterval);
   }
 
   public render(): JSX.Element {
     return (
       <FlexContainer className="flexContainer">
         <HeaderContainerResponsive>
-          <HeaderText className={this.state.classes.header.join(' ')}>Hi there.</HeaderText>
+          <HeaderTextLarge className={this.state.classes.header.join(' ')}>Hi there.</HeaderTextLarge>
           <SubheaderText className={this.state.classes.subHeader.join(' ')}>
             My name is Andy. I am a...
           </SubheaderText>
@@ -68,7 +76,9 @@ export default class Hero extends Component<Props, State> {
 
   private animateTags(): void {
     let i = 1;
-    setInterval(() => this.animateTag(i++), this.tagDuration + (this.animationDuration * 2));
+    this.animationInterval = setInterval(
+      () => this.animateTag(i++), this.tagDuration + (this.animationDuration * 2),
+    );
   }
 
   private animateTag(index: number): void {
@@ -163,9 +173,14 @@ const ButtonContainer = FlexItem.extend`
 
 const HeaderContainerResponsive = HeaderContainer.extend`
   @media (max-width: ${Sizes.maxM}) {
+    display: flex;
     height: 100vh;
     justify-content: center;
   }
+`;
+
+const HeaderTextLarge = HeaderText.extend`
+  font-size: 30px;
 `;
 
 const TagContainer = styled.div`

@@ -17,6 +17,7 @@
     "@babel/core": "^7.0.0-beta.39",
     "@babel/preset-env": "^7.0.0-beta.39",
     "@babel/register": "^7.0.0-beta.39",
+    "@types/node": "^9.4.6",
     "@types/react": "^16.0.36",
     "@types/react-addons-css-transition-group": "^15.0.4",
     "@types/react-dom": "^16.0.3",

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const FlexContainer = styled.div`
   background: #fff;
   display: flex;
+  max-height: 100vh;
   padding: 20px 20%;
 
   @media screen and (max-width: 1023px) {

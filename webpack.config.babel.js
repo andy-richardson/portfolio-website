@@ -3,6 +3,8 @@ import HTMLWebpackPlugin from 'html-webpack-plugin'; // tslint:disable-line:no-i
 
 const Config: webpack.Configuration = {
   devServer: {
+    host: '0.0.0.0',
+    port: 8080,
     contentBase: '/assets',
     publicPath: '/',
     historyApiFallback: true,

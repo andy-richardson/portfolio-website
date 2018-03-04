@@ -86,7 +86,7 @@ const ImageLink = styled.a`
 
 const Image = styled.img`
   float: right;
-  width: 25px;
+  width: 20px;
 `;
 
 const Row = styled.div`
@@ -120,8 +120,7 @@ const TagsContainer = styled.div`
   justify-content: end;
 `;
 
-const Header = styled.h3`
-  font-size: 20px;
+const Header = styled.h4`
   margin-right: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
