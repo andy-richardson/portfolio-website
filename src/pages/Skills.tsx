@@ -67,7 +67,7 @@ export default class Skills extends Component<Props, State> {
         </SkillsContainer>
 
         <ButtonContainer className={this.state.classes.button.join(' ')}>
-          <Link to="/skills">
+          <Link to="/online">
             <Icon type="arrow-right" />
           </Link>
         </ButtonContainer>

@@ -3,6 +3,7 @@ import 'components/Animation';
 import About from 'pages/About';
 import Github from 'pages/Github';
 import Hero from 'pages/Hero';
+import Online from 'pages/Online';
 import Projects from 'pages/Projects';
 import Skills from 'pages/Skills';
 import React, { Component } from 'react';
@@ -26,7 +27,7 @@ export default class App extends Component<Props, State> {
           <Route path="/about" component={About}/>
           <Route path="/projects" component={Projects}/>
           <Route path="/skills" component={Skills}/>
-          <Route path="/github" component={Github}/>
+          <Route path="/online" component={Online}/>
         </Layout>
       </Router>
     );
