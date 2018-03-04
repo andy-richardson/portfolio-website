@@ -1,4 +1,5 @@
 import { Col, Icon, Row } from 'antd';
+import { ButtonContainer } from 'components/Button';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText } from 'components/Header';
 import ProjectItem from 'components/ProjectItem';
@@ -110,28 +111,5 @@ const ProjectItemContainer = styled.div`
 
   &.animate-in {
     transform: translateX(0);
-  }
-`;
-
-const ButtonContainer = FlexItem.extend`
-  text-align: center;
-  font-size: 24px;
-  position: absolute;
-  right: 5%;
-  transition: transform 300ms ease-out;
-  transform: translateY(100vh);
-
-  a {
-    color: #444;
-  }
-
-  &.animate-in {
-    transform: translateY(0vh);
-  }
-
-  @media screen and (max-width: 1023px) {
-    display: block;
-    position: inherit;
-    max-height: min-content;
   }
 `;

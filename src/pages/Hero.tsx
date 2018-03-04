@@ -1,4 +1,5 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
+import { ButtonContainer } from 'components/Button';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText, SubheaderText } from 'components/Header';
 import { Sizes } from 'config/Style';
@@ -154,22 +155,6 @@ const tags: string[] = [
   'blockchain enthusiast',
   'react developer',
 ];
-
-const ButtonContainer = FlexItem.extend`
-  text-align: center;
-  font-size: 24px;
-
-  a {
-    color: #444;
-  }
-
-  @media (max-width: ${Sizes.maxM}) {
-    bottom: 20px;
-    left: 0;
-    position: absolute;
-    width: 100vw;
-  }
-`;
 
 const HeaderContainerResponsive = HeaderContainer.extend`
   @media (max-width: ${Sizes.maxM}) {

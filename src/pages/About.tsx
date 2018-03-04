@@ -1,4 +1,5 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
+import { ButtonContainer } from 'components/Button';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText } from 'components/Header';
 import { Sizes } from 'config/Style';
@@ -95,23 +96,9 @@ const TextItem = styled.div`
   }
 `;
 
-const ButtonContainer = FlexItem.extend`
-  text-align: center;
-  font-size: 24px;
-  position: absolute;
-
-  a {
-    color: #444;
-  }
-
+const ButtonContainerResponsive = ButtonContainer.extend`
   @media (min-width: ${Sizes.minL}) {
     height: 100%;
     right: 20px;
-  }
-
-  @media (max-width: ${Sizes.maxM}) {
-    bottom: 20px;
-    left: 0;
-    width: 100vw;
   }
 `;
