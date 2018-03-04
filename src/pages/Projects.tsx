@@ -3,6 +3,7 @@ import { ButtonContainer } from 'components/Button';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText } from 'components/Header';
 import ProjectItem from 'components/ProjectItem';
+import { Sizes } from 'config/Style';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -82,7 +83,7 @@ export default class Projects extends Component<Props, State> {
         </ProjectsContainer>
 
         <ButtonContainer className={(this.state.buttonIn) ? 'animate-in' : ''}>
-          <Link to="/projects">
+          <Link to="/skills">
             <Icon type="arrow-right" />
           </Link>
         </ButtonContainer>
@@ -99,7 +100,7 @@ const ProjectsContainer = FlexItem.extend`
     margin-bottom: 20px;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: ${Sizes.maxM}) {
     display: block;
     padding: 0;
   }

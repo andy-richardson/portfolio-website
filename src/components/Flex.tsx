@@ -7,7 +7,7 @@ export const FlexContainer = styled.div`
   max-height: 100vh;
   padding: 20px 20%;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: ${Sizes.maxM}) {
     padding: 10px 30px;
     flex-direction: column;
   }
@@ -25,11 +25,11 @@ export const FlexItem = styled.div`
   justify-content: center;
   position: relative;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${Sizes.minL}) {
     min-height: 100%;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: ${Sizes.maxM}) {
     padding: 20px 0;
   }
 `;
