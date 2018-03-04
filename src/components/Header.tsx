@@ -9,8 +9,10 @@ export const HeaderContainer = FlexItem.extend`
 `;
 
 export const HeaderText = styled.h1`
+  color: #fff;
   font-size: 20px;
 `;
 
 export const SubheaderText = styled.h2`
+  color: #fff;
 `;

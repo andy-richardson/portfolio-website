@@ -1,5 +1,6 @@
 import { Button, Col, Icon, Layout, Row, Tag } from 'antd';
 import { ButtonContainer } from 'components/Button';
+import Circles from 'components/Circles';
 import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText, SubheaderText } from 'components/Header';
 import { Sizes } from 'config/Style';
@@ -15,6 +16,7 @@ interface State {
     subHeader: string[];
     tag: string[];
   };
+  loaded: boolean;
   tag: {
     color: string;
     text: string;
@@ -29,6 +31,7 @@ export default class Hero extends Component<Props, State> {
       subHeader: ['fade-in'],
       tag: ['fade-in'],
     },
+    loaded: false,
     tag: {
       color: tagColors[0],
       text: tags[0],
@@ -42,7 +45,9 @@ export default class Hero extends Component<Props, State> {
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 500);
-    this.addElements();
+
+    setTimeout(() => this.setState({ loaded: true }), 2000);
+    setTimeout(() => this.addElements(), 2700);
     this.animateTags();
   }
 
@@ -66,10 +71,10 @@ export default class Hero extends Component<Props, State> {
         </HeaderContainerResponsive>
 
         <ButtonContainer className={this.state.classes.button.join(' ')}>
-          <Link to="/about">
-            <Icon type="arrow-right" />
-          </Link>
+          <Icon type="right-circle" style={{ color: 'rgba(255,255,255, 0.6)' }} />
         </ButtonContainer>
+
+        <Circles fullscreenPrimary={this.state.loaded}/>
       </FlexContainer>
     );
   }
@@ -135,16 +140,7 @@ export default class Hero extends Component<Props, State> {
 }
 
 const tagColors: string[] = [
-  'green',
-  'magenta',
-  'blue',
-  'volcano',
-  'cyan',
-  'purple',
-  'gold',
-  'geekblue',
-  'lime',
-  'orange',
+  '#777'
 ];
 
 const tags: string[] = [

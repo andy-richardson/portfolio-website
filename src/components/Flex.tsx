@@ -6,6 +6,7 @@ export const FlexContainer = styled.div`
   display: flex;
   max-height: 100vh;
   padding: 20px 20%;
+  z-index: 200;
 
   @media screen and (max-width: ${Sizes.maxM}) {
     padding: 10px 30px;

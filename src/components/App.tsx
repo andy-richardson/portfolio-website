@@ -28,7 +28,6 @@ export default class App extends Component<Props, State> {
           <Route path="/projects" component={Projects}/>
           <Route path="/skills" component={Skills}/>
           <Route path="/github" component={Github}/>
-          <Circles/>
         </Layout>
       </Router>
     );

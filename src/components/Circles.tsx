@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-type Props = any;
+interface Props {
+  fullscreenPrimary?: boolean;
+}
 type State = any;
 
 export default class Circles extends Component<Props, State> {
@@ -18,7 +20,12 @@ export default class Circles extends Component<Props, State> {
 
   public componentDidMount() {
     this.flashText();
-    setTimeout(() => this.goFullscreen('primary'), 900);
+  }
+
+  public componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.fullscreenPrimary && this.state.classes.primary.indexOf('fullscreen') === -1) {
+      this.goFullscreen('primary');
+    }
   }
 
   public render(): JSX.Element {
@@ -150,6 +157,10 @@ const CircleContainer = styled.div`
   justify-content: center;
   position: fixed;
   width: 100%;
+  z-index: -1;
+
+  left: 0;
+  top: 0;
 `;
 
 const CirclePrimary = Circle.extend`
