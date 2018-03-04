@@ -1,5 +1,6 @@
 import { Icon, Layout, Menu } from 'antd';
 import 'components/Animation';
+import Circles from 'components/Circles';
 import About from 'pages/About';
 import Github from 'pages/Github';
 import Hero from 'pages/Hero';
@@ -27,6 +28,7 @@ export default class App extends Component<Props, State> {
           <Route path="/projects" component={Projects}/>
           <Route path="/skills" component={Skills}/>
           <Route path="/github" component={Github}/>
+          <Circles/>
         </Layout>
       </Router>
     );

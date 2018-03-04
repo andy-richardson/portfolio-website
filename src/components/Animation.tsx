@@ -19,4 +19,30 @@ injectGlobal`
       opacity: 1;
     }
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fadeIn {
+    animation: fadeIn 300ms ease-in forwards;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .fadeOut {
+    animation: fadeOut 300ms ease-in forwards;
+  }
 `;
