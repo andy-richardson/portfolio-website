@@ -1,3 +1,4 @@
+// tslint:disable no-unused-expression
 import { injectGlobal } from 'styled-components';
 
 injectGlobal`

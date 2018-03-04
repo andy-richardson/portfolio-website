@@ -31,7 +31,8 @@ const HeaderText = styled.h1`
   }
 `;
 
-const TextContainer = FlexItem.extend;
+const TextContainer = FlexItem.extend`
+`;
 
 export default class Skills extends Component<Props, State> {
   constructor(props: any) {
@@ -46,8 +47,8 @@ export default class Skills extends Component<Props, State> {
         </HeaderContainer>
 
         <TextContainer>
-          <p><Rate disabled defaultValue={4} /></p>
-          <p><Rate disabled defaultValue={4} /></p>
+          <p><Rate disabled={true} defaultValue={4} /></p>
+          <p><Rate disabled={true} defaultValue={4} /></p>
         </TextContainer>
       </FlexContainer>
     );

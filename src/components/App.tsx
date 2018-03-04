@@ -33,6 +33,7 @@ export default class App extends Component<Props, State> {
   }
 }
 
+// tslint:disable-next-line:no-unused-expression
 injectGlobal`
   body {
     font-family: 'Open Sans', sans-serif;
