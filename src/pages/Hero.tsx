@@ -4,7 +4,6 @@ import { FlexContainer, FlexItem } from 'components/Flex';
 import { HeaderContainer, HeaderText, SubheaderText } from 'components/Header';
 import { Sizes } from 'config/Style';
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -76,16 +75,16 @@ export default class Hero extends Component<Props, State> {
   }
 
   private animateTags(): void {
-    let i = 1;
+    let i = 0;
     this.animationInterval = setInterval(
       () => this.animateTag(i++), this.tagDuration + (this.animationDuration * 2),
     );
   }
 
   private animateTag(index: number): void {
-    this.showTag();
-    setTimeout(() => this.hideTag(), this.tagDuration + this.animationDuration);
-    setTimeout(() => this.changeTag(index), this.tagDuration + (this.animationDuration) * 2);
+    this.hideTag();
+    setTimeout(() => this.changeTag(index), this.animationDuration);
+    setTimeout(() => this.showTag(), this.animationDuration);
   }
 
   private showTag(): void {
@@ -114,7 +113,7 @@ export default class Hero extends Component<Props, State> {
 
   private addElements(): void {
     const animations = {
-      button: 900,
+      button: 1200,
       header: 200,
       subHeader: 400,
       tag: 600,
@@ -124,7 +123,7 @@ export default class Hero extends Component<Props, State> {
     .forEach((el: any) =>
       setTimeout(() => {
         if (el === 'tag') {
-          return this.animateTag(0);
+          return this.showTag();
         }
 
         const classes: any = {...this.state.classes};
