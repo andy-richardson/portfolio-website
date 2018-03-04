@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/andyrichardson/portfolio-website/tree/master.svg?style=shield)](https://circleci.com/gh/andyrichardson/portfolio-website/tree/master) 
+
 # Portfolio Website
 My personal Portfolio website located [here](https://andythedeveloper.com).
 
